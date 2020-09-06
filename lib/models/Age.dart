@@ -1,5 +1,3 @@
-import 'package:flutter/cupertino.dart';
-
 class AgeModel {
   int years;
   int months;

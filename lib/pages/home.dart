@@ -32,13 +32,13 @@ class _HomeState extends State<Home> {
   ];
 
   List<String> daysOfWeek = [
-    "Sunday",
     "Monday",
     "Tuesday",
     "Wednesday",
     "Thursday",
     "Friday",
-    "Saturday"
+    "Saturday",
+    "Sunday",
   ];
 
   List<TableRow> _nextBirthdaysList;
