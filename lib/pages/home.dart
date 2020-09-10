@@ -3,6 +3,7 @@ import 'package:age_calculator/models/Lifetime.dart';
 import 'package:age_calculator/pages/format.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:share/share.dart';
 
 class RoutePopupMenuItem {
   RoutePopupMenuItem({this.title, this.icon, this.route});
@@ -27,8 +28,7 @@ class _HomeState extends State<Home> {
   List<RoutePopupMenuItem> menuChoices = [
     RoutePopupMenuItem(
         title: 'Date Format', route: '/date_format', icon: Icons.date_range),
-    RoutePopupMenuItem(
-        title: 'Share', route: '/date_format', icon: Icons.share),
+    RoutePopupMenuItem(title: 'Share', route: null, icon: Icons.share),
   ];
 
   List<String> daysOfWeek = [
@@ -498,5 +498,15 @@ class _HomeState extends State<Home> {
         this._createNextBirthdaysList();
       });
     }
+    if (choice.title == 'Share') {
+      _share(context);
+    }
+  }
+
+  _share(BuildContext context) {
+    final RenderBox box = context.findRenderObject();
+    Share.share("I'm ${lifeTime.days} days old!",
+        subject: 'Age Calculator',
+        sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size);
   }
 }
