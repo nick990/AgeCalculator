@@ -2,55 +2,70 @@ class AgeModel {
   int years;
   int months;
   int days;
-  DateTime startDate; //birthday
-  DateTime endDate; //today
-  AgeModel({this.startDate, this.endDate}) {
+  DateTime birthday; //birthday
+  DateTime today; //today
+  int daysToNextBD;
+  AgeModel({this.birthday, this.today}) {
     DateTime lastBirthday = getLastBirthday();
     print("Last birthday: ${lastBirthday.toString()}");
-    this.years = endDate.year - startDate.year;
+    this.years = today.year - birthday.year;
     //Se l'ultimo compleanno non è nell'anno corrente
-    if (lastBirthday.year < endDate.year) {
+    if (lastBirthday.year < today.year) {
       this.years--;
-      this.months = endDate.month + (12 - lastBirthday.month);
+      this.months = today.month + (12 - lastBirthday.month);
     } else {
-      this.months = endDate.month - lastBirthday.month;
+      this.months = today.month - lastBirthday.month;
     }
-    if (lastBirthday.month != startDate.month) {
+    if (lastBirthday.month != birthday.month) {
       this.months++;
     }
-    if (startDate.day > endDate.day) {
+    if (birthday.day > today.day) {
       this.months--;
     }
     var lastAnn = getLastMonthAnniversary();
     print("Last month anniversay: ${lastAnn.toString()}");
-    this.days = endDate.difference(lastAnn).inDays;
-    if (lastAnn.day != startDate.day) {
+    this.days = today.difference(lastAnn).inDays;
+    if (lastAnn.day != birthday.day) {
       this.days++;
+    }
+
+    DateTime nextBirthday = getNextBirthday();
+    print("Next birthday: ${nextBirthday}");
+    this.daysToNextBD = nextBirthday.difference(today).inDays + 1;
+  }
+
+  DateTime getNextBirthday() {
+    var currentYearBirthday =
+        DateTime(today.year, birthday.month, birthday.day);
+    if (currentYearBirthday.isAfter(today)) {
+      return currentYearBirthday;
+    } else {
+      return DateTime(today.year + 1, birthday.month, birthday.day);
     }
   }
 
   DateTime getLastBirthday() {
     var currentYearBirthday =
-        DateTime(endDate.year, startDate.month, startDate.day);
+        DateTime(today.year, birthday.month, birthday.day);
 
-    if (currentYearBirthday.isBefore(endDate)) {
+    if (currentYearBirthday.isBefore(today)) {
       return currentYearBirthday;
     } else {
-      return DateTime(endDate.year - 1, startDate.month, startDate.day);
+      return DateTime(today.year - 1, birthday.month, birthday.day);
     }
   }
 
   DateTime getLastMonthAnniversary() {
-    int year = endDate.year;
-    int month = endDate.month;
-    if (endDate.day < startDate.day) {
-      month = endDate.month > 1 ? endDate.month - 1 : 1;
+    int year = today.year;
+    int month = today.month;
+    if (today.day < birthday.day) {
+      month = today.month > 1 ? today.month - 1 : 1;
       if (month == 1) {
         year--;
       }
     }
 
-    int day = startDate.day;
+    int day = birthday.day;
     return DateTime(year, month, day);
   }
 
@@ -58,13 +73,13 @@ class AgeModel {
     var list = List<DateTime>();
     var startingYear;
     DateTime lastBirthday = getLastBirthday();
-    if (lastBirthday.year < endDate.year) {
-      startingYear = endDate.year;
+    if (lastBirthday.year < today.year) {
+      startingYear = today.year;
     } else {
-      startingYear = endDate.year + 1;
+      startingYear = today.year + 1;
     }
     for (int i = 0; i < 10; i++) {
-      list.add(DateTime(startingYear + i, startDate.month, startDate.day));
+      list.add(DateTime(startingYear + i, birthday.month, birthday.day));
     }
     return list;
   }

@@ -8,7 +8,7 @@ class LifeTime {
   LifeTime(AgeModel age) {
     this.years = age.years;
     this.months = this.years * 12 + age.months;
-    this.days = age.endDate.difference(age.startDate).inDays;
-    this.seconds = age.endDate.difference(age.startDate).inSeconds;
+    this.days = age.today.difference(age.birthday).inDays;
+    this.seconds = age.today.difference(age.birthday).inSeconds;
   }
 }
