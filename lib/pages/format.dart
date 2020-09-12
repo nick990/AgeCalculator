@@ -17,40 +17,18 @@ class _FormatState extends State<Format> {
   String _selectedFormat;
   int _radioGroupValue;
 
-  var _radioButtons;
-
   @override
   void initState() {
     super.initState();
     this._selectedFormat = widget.selectedFormat;
     _radioGroupValue = _formatList.indexOf(_selectedFormat);
-    _createRadioButtons();
-  }
-
-  void _createRadioButtons() {
-    _radioButtons = List<Widget>();
-    for (int i = 0; i < _formatList.length; i++) {
-      _radioButtons.add(Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Radio(
-            value: i,
-            groupValue: _radioGroupValue,
-            onChanged: (index) => _radioChanged(index),
-          ),
-          Text(_formatList[i]),
-        ],
-      ));
-    }
   }
 
   void _radioChanged(int index) {
     setState(() {
       _radioGroupValue = index;
       this._selectedFormat = this._formatList[index];
-      _createRadioButtons();
     });
-    //Navigator.pop(context, _selectedFormat);
   }
 
   @override
@@ -70,7 +48,26 @@ class _FormatState extends State<Format> {
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: _radioButtons,
+                children: this._formatList.asMap().entries.map((entry) {
+                  int index = entry.key;
+                  String format = entry.value;
+                  return Container(
+                      padding: EdgeInsets.all(16.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Radio(
+                            groupValue: this._radioGroupValue,
+                            onChanged: (index) => _radioChanged(index),
+                            value: index,
+                          ),
+                          Text(
+                            format,
+                            style: TextStyle(fontSize: 18.0),
+                          ),
+                        ],
+                      ));
+                }).toList(),
               ),
             ),
           ),
