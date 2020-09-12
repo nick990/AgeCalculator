@@ -505,7 +505,15 @@ class _HomeState extends State<Home> {
 
   _share(BuildContext context) {
     final RenderBox box = context.findRenderObject();
-    Share.share("I'm ${lifeTime.days} days old!",
+    String message = "";
+    if (lifeTime != null) {
+      message =
+          "I'm ${lifeTime.days} days old!\nhttps://play.google.com/store/apps/details?id=com.festa.age_calculator";
+    } else {
+      message =
+          "https://play.google.com/store/apps/details?id=com.festa.age_calculator";
+    }
+    Share.share(message,
         subject: 'Age Calculator',
         sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size);
   }
