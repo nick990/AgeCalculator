@@ -393,7 +393,7 @@ class _HomeState extends State<Home> {
       ),
     );
 
-    var nextBirthdaysSection = Card(
+    var upcomingBirthdaysSection = Card(
       elevation: 3,
       child: Column(
         children: [
@@ -408,7 +408,7 @@ class _HomeState extends State<Home> {
                         child: Padding(
                           padding: EdgeInsets.all(10.0),
                           child: Text(
-                            'Next Birthdays',
+                            'Upcoming Birthdays',
                             style: TextStyle(
                               fontSize: 20.0,
                               fontWeight: FontWeight.bold,
@@ -426,6 +426,61 @@ class _HomeState extends State<Home> {
               ),
               Table(
                 children: _nextBirthdaysList,
+              ),
+              Padding(
+                padding: EdgeInsets.all(8.0),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+
+    var nextBirthdaySection = Card(
+      elevation: 3,
+      child: Column(
+        children: [
+          Column(
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      color: Colors.blue,
+                      child: Center(
+                        child: Padding(
+                          padding: EdgeInsets.all(10.0),
+                          child: Text(
+                            'Next Birthday',
+                            style: TextStyle(
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Padding(
+                padding: EdgeInsets.all(8.0),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Column(
+                    children: [
+                      Text(
+                        this.age != null ? age.daysToNextBD.toString() : '-',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 40),
+                      ),
+                      Text('Days'),
+                    ],
+                  ),
+                ],
               ),
               Padding(
                 padding: EdgeInsets.all(8.0),
@@ -456,7 +511,9 @@ class _HomeState extends State<Home> {
                 Padding(padding: EdgeInsets.all(4.0)),
                 lifetimeSection,
                 Padding(padding: EdgeInsets.all(4.0)),
-                nextBirthdaysSection,
+                nextBirthdaySection,
+                Padding(padding: EdgeInsets.all(4.0)),
+                upcomingBirthdaysSection,
               ],
             ),
           ),
@@ -478,7 +535,7 @@ class _HomeState extends State<Home> {
     if (picked != null && picked != birthdayDate)
       setState(() {
         birthdayDate = picked;
-        this.age = AgeModel(startDate: birthdayDate, endDate: todayDate);
+        this.age = AgeModel(birthday: birthdayDate, today: todayDate);
         this.lifeTime = LifeTime(age);
         this._createNextBirthdaysList();
       });
@@ -505,13 +562,12 @@ class _HomeState extends State<Home> {
 
   _share(BuildContext context) {
     final RenderBox box = context.findRenderObject();
-    String message = "";
+    String message =
+        "https://play.google.com/store/apps/details?id=com.festa.age_calculator";
     if (lifeTime != null) {
-      message =
-          "I'm ${lifeTime.days} days old!\nhttps://play.google.com/store/apps/details?id=com.festa.age_calculator";
-    } else {
-      message =
-          "https://play.google.com/store/apps/details?id=com.festa.age_calculator";
+      message = "I'm ${lifeTime.days} days old.\n" +
+          "My next birthday is in ${age.daysToNextBD} days.\n\n" +
+          message;
     }
     Share.share(message,
         subject: 'Age Calculator',
