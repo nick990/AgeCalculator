@@ -57,13 +57,14 @@ class _FormatState extends State<Format> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Radio(
+                            activeColor: Theme.of(context).primaryColorDark,
                             groupValue: this._radioGroupValue,
                             onChanged: (index) => _radioChanged(index),
                             value: index,
                           ),
                           Text(
                             format,
-                            style: TextStyle(fontSize: 18.0),
+                            style: Theme.of(context).textTheme.headline5,
                           ),
                         ],
                       ));

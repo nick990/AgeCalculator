@@ -10,7 +10,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Age Calculator',
       theme: ThemeData(
-        primaryColor: Colors.blue,
+        brightness: Brightness.dark,
+        primaryColorDark: Colors.deepOrangeAccent,
+        cardTheme: CardTheme(
+          elevation: 10,
+          margin: EdgeInsets.all(10),
+        ),
       ),
       initialRoute: '/',
       routes: {
