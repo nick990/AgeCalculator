@@ -1,6 +1,7 @@
 import 'package:age_calculator/models/Age.dart';
 import 'package:age_calculator/models/Lifetime.dart';
 import 'package:age_calculator/pages/format.dart';
+import 'package:age_calculator/widgets/mycard.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:share/share.dart';
@@ -96,26 +97,21 @@ class _HomeState extends State<Home> {
         children: [
           Text(
             'Birthday',
-            style: TextStyle(
-              fontSize: 20.0,
-            ),
+            style: Theme.of(context).textTheme.headline5,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 birthdayDate != null
-                    //? "${birthdayDate.toLocal()}".split(' ')[0]
                     ? "${formatter.format(birthdayDate)}"
                     : " ---",
-                style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+                style: Theme.of(context).textTheme.headline3,
               ),
               CircleAvatar(
-                backgroundColor: Colors.lightBlue,
                 radius: 20,
                 child: IconButton(
                   icon: Icon(Icons.edit),
-                  color: Colors.white,
                   onPressed: () => _selectBirthdayDate(context),
                 ),
               ),
@@ -126,7 +122,6 @@ class _HomeState extends State<Home> {
     );
 
     var datesSection = Card(
-      elevation: 3,
       child: Column(
         children: [
           Padding(
@@ -136,18 +131,14 @@ class _HomeState extends State<Home> {
               children: [
                 Text(
                   'Today',
-                  style: TextStyle(
-                    fontSize: 20.0,
-                  ),
+                  style: Theme.of(context).textTheme.headline5,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      //"${todayDate.toLocal()}".split(' ')[0],
                       "${formatter.format(todayDate)}",
-                      style:
-                          TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+                      style: Theme.of(context).textTheme.headline3,
                     ),
                   ],
                 ),
@@ -160,75 +151,36 @@ class _HomeState extends State<Home> {
       ),
     );
 
-    var ageSection = Card(
-      elevation: 3,
-      child: Column(
+    var ageSection = MyCard(
+      title: 'Age',
+      body: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Column(
             children: [
-              Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      color: Colors.blue,
-                      child: Center(
-                        child: Padding(
-                          padding: EdgeInsets.all(10.0),
-                          child: Text(
-                            'Age',
-                            style: TextStyle(
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+              Text(
+                this.age != null ? age.years.toString() : '-',
+                style: Theme.of(context).textTheme.headline3,
               ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
+              Text('Years'),
+            ],
+          ),
+          Column(
+            children: [
+              Text(
+                this.age != null ? age.months.toString() : '-',
+                style: Theme.of(context).textTheme.headline3,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Column(
-                    children: [
-                      Text(
-                        this.age != null ? age.years.toString() : '-',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 40),
-                      ),
-                      Text('Years'),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Text(
-                        this.age != null ? age.months.toString() : '-',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 40),
-                      ),
-                      Text('Months'),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Text(
-                        this.age != null ? age.days.toString() : '-',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 40),
-                      ),
-                      Text('Days'),
-                    ],
-                  ),
-                ],
+              Text('Months'),
+            ],
+          ),
+          Column(
+            children: [
+              Text(
+                this.age != null ? age.days.toString() : '-',
+                style: Theme.of(context).textTheme.headline3,
               ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-              ),
+              Text('Days'),
             ],
           ),
         ],
@@ -247,7 +199,6 @@ class _HomeState extends State<Home> {
                 children: [
                   Icon(
                     item.icon,
-                    color: Colors.grey,
                   ),
                   Padding(padding: EdgeInsets.all(8.0)),
                   Text(item.title),
@@ -257,234 +208,117 @@ class _HomeState extends State<Home> {
       },
     );
 
-    var lifetimeSection = Card(
-      elevation: 3,
-      child: Column(
+    var lifetimeSection = MyCard(
+      title: 'Lifetime',
+      body: Table(
         children: [
-          Column(
+          TableRow(
             children: [
-              Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      color: Colors.blue,
-                      child: Center(
-                        child: Padding(
-                          padding: EdgeInsets.all(10.0),
-                          child: Text(
-                            'Lifetime',
-                            style: TextStyle(
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+              TableCell(
+                child: Padding(
+                  padding: EdgeInsets.all(4.0),
+                  child: Text(
+                    'Years \t',
+                    textAlign: TextAlign.end,
                   ),
-                ],
+                ),
               ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
+              TableCell(
+                child: Padding(
+                  padding: EdgeInsets.all(4.0),
+                  child: Text(
+                    this.lifeTime != null ? lifeTime.years.toString() : '-',
+                  ),
+                ),
+              )
+            ],
+          ),
+          TableRow(
+            children: [
+              TableCell(
+                child: Padding(
+                  padding: EdgeInsets.all(4.0),
+                  child: Text(
+                    'Months \t',
+                    textAlign: TextAlign.end,
+                  ),
+                ),
               ),
-              Table(
-                children: [
-                  TableRow(
-                    children: [
-                      TableCell(
-                        child: Padding(
-                          padding: EdgeInsets.all(4.0),
-                          child: Text(
-                            'Years \t',
-                            textAlign: TextAlign.end,
-                          ),
-                        ),
-                      ),
-                      TableCell(
-                        child: Padding(
-                          padding: EdgeInsets.all(4.0),
-                          child: Text(
-                            this.lifeTime != null
-                                ? lifeTime.years.toString()
-                                : '-',
-                          ),
-                        ),
-                      )
-                    ],
+              TableCell(
+                child: Padding(
+                  padding: EdgeInsets.all(4.0),
+                  child: Text(
+                    this.lifeTime != null ? lifeTime.months.toString() : '-',
                   ),
-                  TableRow(
-                    children: [
-                      TableCell(
-                        child: Padding(
-                          padding: EdgeInsets.all(4.0),
-                          child: Text(
-                            'Months \t',
-                            textAlign: TextAlign.end,
-                          ),
-                        ),
-                      ),
-                      TableCell(
-                        child: Padding(
-                          padding: EdgeInsets.all(4.0),
-                          child: Text(
-                            this.lifeTime != null
-                                ? lifeTime.months.toString()
-                                : '-',
-                          ),
-                        ),
-                      )
-                    ],
+                ),
+              )
+            ],
+          ),
+          TableRow(
+            children: [
+              TableCell(
+                child: Padding(
+                  padding: EdgeInsets.all(4.0),
+                  child: Text(
+                    "Days  \t",
+                    textAlign: TextAlign.end,
                   ),
-                  TableRow(
-                    children: [
-                      TableCell(
-                        child: Padding(
-                          padding: EdgeInsets.all(4.0),
-                          child: Text(
-                            "Days  \t",
-                            textAlign: TextAlign.end,
-                          ),
-                        ),
-                      ),
-                      TableCell(
-                        child: Padding(
-                          padding: EdgeInsets.all(4.0),
-                          child: Text(
-                            this.lifeTime != null
-                                ? lifeTime.days.toString()
-                                : '-',
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                  TableRow(
-                    children: [
-                      TableCell(
-                        child: Padding(
-                          padding: EdgeInsets.all(4.0),
-                          child: Text(
-                            'Seconds \t',
-                            textAlign: TextAlign.end,
-                          ),
-                        ),
-                      ),
-                      TableCell(
-                        child: Padding(
-                          padding: EdgeInsets.all(4.0),
-                          child: Text(
-                            this.lifeTime != null
-                                ? lifeTime.seconds.toString()
-                                : '-',
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ],
+                ),
               ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
+              TableCell(
+                child: Padding(
+                  padding: EdgeInsets.all(4.0),
+                  child: Text(
+                    this.lifeTime != null ? lifeTime.days.toString() : '-',
+                  ),
+                ),
+              )
+            ],
+          ),
+          TableRow(
+            children: [
+              TableCell(
+                child: Padding(
+                  padding: EdgeInsets.all(4.0),
+                  child: Text(
+                    'Seconds \t',
+                    textAlign: TextAlign.end,
+                  ),
+                ),
               ),
+              TableCell(
+                child: Padding(
+                  padding: EdgeInsets.all(4.0),
+                  child: Text(
+                    this.lifeTime != null ? lifeTime.seconds.toString() : '-',
+                  ),
+                ),
+              )
             ],
           ),
         ],
       ),
     );
 
-    var upcomingBirthdaysSection = Card(
-      elevation: 3,
-      child: Column(
-        children: [
-          Column(
-            children: [
-              Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      color: Colors.blue,
-                      child: Center(
-                        child: Padding(
-                          padding: EdgeInsets.all(10.0),
-                          child: Text(
-                            'Upcoming Birthdays',
-                            style: TextStyle(
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-              ),
-              Table(
-                children: _nextBirthdaysList,
-              ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-              ),
-            ],
-          ),
-        ],
+    var upcomingBirthdaysSection = MyCard(
+      title: 'Upcoming Birthdays',
+      body: Table(
+        children: _nextBirthdaysList,
       ),
     );
 
-    var nextBirthdaySection = Card(
-      elevation: 3,
-      child: Column(
+    var nextBirthdaySection = MyCard(
+      title: 'Next Birthdays',
+      body: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Column(
             children: [
-              Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      color: Colors.blue,
-                      child: Center(
-                        child: Padding(
-                          padding: EdgeInsets.all(10.0),
-                          child: Text(
-                            'Next Birthday',
-                            style: TextStyle(
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+              Text(
+                this.age != null ? age.daysToNextBD.toString() : '-',
+                style: Theme.of(context).textTheme.headline3,
               ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Column(
-                    children: [
-                      Text(
-                        this.age != null ? age.daysToNextBD.toString() : '-',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 40),
-                      ),
-                      Text('Days'),
-                    ],
-                  ),
-                ],
-              ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-              ),
+              Text('Days'),
             ],
           ),
         ],
@@ -492,7 +326,6 @@ class _HomeState extends State<Home> {
     );
 
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text('Age Calculator'),
         actions: [
@@ -500,22 +333,15 @@ class _HomeState extends State<Home> {
         ],
       ),
       body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.all(16.0),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                datesSection,
-                Padding(padding: EdgeInsets.all(4.0)),
-                ageSection,
-                Padding(padding: EdgeInsets.all(4.0)),
-                lifetimeSection,
-                Padding(padding: EdgeInsets.all(4.0)),
-                nextBirthdaySection,
-                Padding(padding: EdgeInsets.all(4.0)),
-                upcomingBirthdaysSection,
-              ],
-            ),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              datesSection,
+              ageSection,
+              lifetimeSection,
+              nextBirthdaySection,
+              upcomingBirthdaysSection,
+            ],
           ),
         ),
       ),
