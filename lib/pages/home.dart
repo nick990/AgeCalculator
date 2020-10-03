@@ -1,6 +1,7 @@
 import 'package:age_calculator/models/Age.dart';
 import 'package:age_calculator/models/Lifetime.dart';
 import 'package:age_calculator/pages/format.dart';
+import 'package:age_calculator/widgets/lifetime.dart';
 import 'package:age_calculator/widgets/mycard.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -47,7 +48,8 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     birthdayDate = null;
-    todayDate = DateTime.now();
+    var now = DateTime.now();
+    todayDate = new DateTime(now.year, now.month, now.day);
     age = null;
     lifeTime = null;
     format = 'dd-MM-yyyy';
@@ -208,98 +210,6 @@ class _HomeState extends State<Home> {
       },
     );
 
-    var lifetimeSection = MyCard(
-      title: 'Lifetime',
-      body: Table(
-        children: [
-          TableRow(
-            children: [
-              TableCell(
-                child: Padding(
-                  padding: EdgeInsets.all(4.0),
-                  child: Text(
-                    'Years \t',
-                    textAlign: TextAlign.end,
-                  ),
-                ),
-              ),
-              TableCell(
-                child: Padding(
-                  padding: EdgeInsets.all(4.0),
-                  child: Text(
-                    this.lifeTime != null ? lifeTime.years.toString() : '-',
-                  ),
-                ),
-              )
-            ],
-          ),
-          TableRow(
-            children: [
-              TableCell(
-                child: Padding(
-                  padding: EdgeInsets.all(4.0),
-                  child: Text(
-                    'Months \t',
-                    textAlign: TextAlign.end,
-                  ),
-                ),
-              ),
-              TableCell(
-                child: Padding(
-                  padding: EdgeInsets.all(4.0),
-                  child: Text(
-                    this.lifeTime != null ? lifeTime.months.toString() : '-',
-                  ),
-                ),
-              )
-            ],
-          ),
-          TableRow(
-            children: [
-              TableCell(
-                child: Padding(
-                  padding: EdgeInsets.all(4.0),
-                  child: Text(
-                    "Days  \t",
-                    textAlign: TextAlign.end,
-                  ),
-                ),
-              ),
-              TableCell(
-                child: Padding(
-                  padding: EdgeInsets.all(4.0),
-                  child: Text(
-                    this.lifeTime != null ? lifeTime.days.toString() : '-',
-                  ),
-                ),
-              )
-            ],
-          ),
-          TableRow(
-            children: [
-              TableCell(
-                child: Padding(
-                  padding: EdgeInsets.all(4.0),
-                  child: Text(
-                    'Seconds \t',
-                    textAlign: TextAlign.end,
-                  ),
-                ),
-              ),
-              TableCell(
-                child: Padding(
-                  padding: EdgeInsets.all(4.0),
-                  child: Text(
-                    this.lifeTime != null ? lifeTime.seconds.toString() : '-',
-                  ),
-                ),
-              )
-            ],
-          ),
-        ],
-      ),
-    );
-
     var upcomingBirthdaysSection = MyCard(
       title: 'Upcoming Birthdays',
       body: Table(
@@ -338,7 +248,9 @@ class _HomeState extends State<Home> {
             children: [
               datesSection,
               ageSection,
-              lifetimeSection,
+              LifetimeWidget(
+                lifetime: lifeTime,
+              ),
               nextBirthdaySection,
               upcomingBirthdaysSection,
             ],
