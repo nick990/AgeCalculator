@@ -97,16 +97,22 @@ class _CalculatorPartialScreenState extends State<CalculatorPartialScreen> {
       ),
     );
 
+    final List<Widget> ageWidgets = new List<Widget>();
+    if (this.age != null) {
+      ageWidgets.add(AgeWidget(age: age));
+      ageWidgets.add(LifetimeWidget(lifetime: lifeTime));
+      ageWidgets.add(NextBirthdaysWidget(age: age));
+      ageWidgets
+          .add(UpcomingBirthdaysWidget(age: this.age, formatter: formatter));
+    }
+
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
           child: Column(
             children: [
               datesSection,
-              AgeWidget(age: age),
-              LifetimeWidget(lifetime: lifeTime),
-              NextBirthdaysWidget(age: age),
-              UpcomingBirthdaysWidget(age: this.age, formatter: formatter),
+              ...ageWidgets,
             ],
           ),
         ),

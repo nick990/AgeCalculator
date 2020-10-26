@@ -1,5 +1,5 @@
 import 'package:age_calculator/pages/home.dart';
-import 'package:age_calculator/pages/settings_partial_screen.dart';
+import 'package:age_calculator/pages/settings_screen.dart';
 import 'package:age_calculator/providers/settings_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
