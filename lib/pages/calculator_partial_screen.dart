@@ -97,12 +97,12 @@ class _CalculatorPartialScreenState extends State<CalculatorPartialScreen> {
       ),
     );
 
-    final List<Widget> ageWidgets = new List<Widget>();
+    final List<Widget> ageSection = new List<Widget>();
     if (this.age != null) {
-      ageWidgets.add(AgeWidget(age: age));
-      ageWidgets.add(LifetimeWidget(lifetime: lifeTime));
-      ageWidgets.add(NextBirthdaysWidget(age: age));
-      ageWidgets
+      ageSection.add(AgeWidget(age: age));
+      ageSection.add(LifetimeWidget(lifetime: lifeTime));
+      ageSection.add(NextBirthdaysWidget(age: age));
+      ageSection
           .add(UpcomingBirthdaysWidget(age: this.age, formatter: formatter));
     }
 
@@ -112,7 +112,7 @@ class _CalculatorPartialScreenState extends State<CalculatorPartialScreen> {
           child: Column(
             children: [
               datesSection,
-              ...ageWidgets,
+              ...ageSection,
             ],
           ),
         ),
@@ -133,7 +133,7 @@ class _CalculatorPartialScreenState extends State<CalculatorPartialScreen> {
     if (picked != null && picked != birthdayDate)
       setState(() {
         birthdayDate = picked;
-        this.age = AgeModel(birthday: birthdayDate, today: todayDate);
+        this.age = AgeModel.today(birthday: birthdayDate);
         this.lifeTime = LifeTime(age);
       });
   }

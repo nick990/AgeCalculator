@@ -5,7 +5,20 @@ class AgeModel {
   DateTime birthday; //birthday
   DateTime today; //today
   int daysToNextBD;
+
   AgeModel({this.birthday, this.today}) {
+    this.init(birthday, today);
+  }
+
+  AgeModel.today({this.birthday}) {
+    final now = DateTime.now();
+    final todayDate = new DateTime(now.year, now.month, now.day);
+    this.init(birthday, todayDate);
+  }
+
+  init(DateTime birthday, DateTime today) {
+    this.today = today;
+    this.birthday = birthday;
     print("Today: ${today}");
     print("Birthday: ${birthday}");
     DateTime lastBirthday = getLastBirthday();
