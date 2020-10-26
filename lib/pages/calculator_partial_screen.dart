@@ -6,7 +6,6 @@ import 'package:age_calculator/widgets/mycard.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:share/share.dart';
 
 class CalculatorPartialScreen extends StatefulWidget {
   @override
@@ -19,8 +18,6 @@ class _CalculatorPartialScreenState extends State<CalculatorPartialScreen> {
   DateTime todayDate;
   AgeModel age;
   LifeTime lifeTime;
-  //String format;
-  //DateFormat formatter;
 
   List<String> daysOfWeek = [
     "Monday",
@@ -32,7 +29,7 @@ class _CalculatorPartialScreenState extends State<CalculatorPartialScreen> {
     "Sunday",
   ];
 
-  //List<TableRow> _nextBirthdaysList;
+  List<TableRow> _nextBirthdaysList;
 
   @override
   void initState() {
@@ -41,50 +38,47 @@ class _CalculatorPartialScreenState extends State<CalculatorPartialScreen> {
     todayDate = new DateTime(now.year, now.month, now.day);
     age = null;
     lifeTime = null;
-    // format = 'dd-MM-yyyy';
-    // formatter = DateFormat(format);
-    // _createNextBirthdaysList();
   }
 
-  // void _createNextBirthdaysList() {
-  //   _nextBirthdaysList = List<TableRow>();
-  //   List<DateTime> birthdays;
-  //   if (age != null) {
-  //     birthdays = age.getNextBirthdaysList();
-  //     for (int i = 0; i < birthdays.length; i++) {
-  //       _nextBirthdaysList.add(
-  //         TableRow(
-  //           children: [
-  //             TableCell(
-  //               child: Padding(
-  //                 padding: EdgeInsets.all(4.0),
-  //                 child: Text(
-  //                   "${formatter.format(birthdays[i])} \t",
-  //                   textAlign: TextAlign.end,
-  //                 ),
-  //               ),
-  //             ),
-  //             TableCell(
-  //               child: Padding(
-  //                 padding: EdgeInsets.all(4.0),
-  //                 child: Text(
-  //                   "${daysOfWeek[birthdays[i].weekday - 1]}",
-  //                 ),
-  //               ),
-  //             )
-  //           ],
-  //         ),
-  //       );
-  //     }
-  //   }
-  // }
+  void _createNextBirthdaysList(DateFormat formatter) {
+    _nextBirthdaysList = List<TableRow>();
+    List<DateTime> birthdays;
+    if (age != null) {
+      birthdays = age.getNextBirthdaysList();
+      for (int i = 0; i < birthdays.length; i++) {
+        _nextBirthdaysList.add(
+          TableRow(
+            children: [
+              TableCell(
+                child: Padding(
+                  padding: EdgeInsets.all(4.0),
+                  child: Text(
+                    "${formatter.format(birthdays[i])} \t",
+                    textAlign: TextAlign.end,
+                  ),
+                ),
+              ),
+              TableCell(
+                child: Padding(
+                  padding: EdgeInsets.all(4.0),
+                  child: Text(
+                    "${daysOfWeek[birthdays[i].weekday - 1]}",
+                  ),
+                ),
+              )
+            ],
+          ),
+        );
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     final settingsProvider = Provider.of<SettingsProvider>(context);
     final format = settingsProvider.format;
     final formatter = DateFormat(format);
-    //_createNextBirthdaysList();
+    _createNextBirthdaysList(formatter);
 
     var birthdaySelector = Padding(
       padding: EdgeInsets.all(16.0),
@@ -183,12 +177,12 @@ class _CalculatorPartialScreenState extends State<CalculatorPartialScreen> {
       ),
     );
 
-    // var upcomingBirthdaysSection = MyCard(
-    //   title: 'Upcoming Birthdays',
-    //   body: Table(
-    //     children: _nextBirthdaysList,
-    //   ),
-    // );
+    var upcomingBirthdaysSection = MyCard(
+      title: 'Upcoming Birthdays',
+      body: Table(
+        children: _nextBirthdaysList,
+      ),
+    );
 
     var nextBirthdaySection = MyCard(
       title: 'Next Birthdays',
@@ -219,7 +213,7 @@ class _CalculatorPartialScreenState extends State<CalculatorPartialScreen> {
                 lifetime: lifeTime,
               ),
               nextBirthdaySection,
-              //  upcomingBirthdaysSection,
+              upcomingBirthdaysSection,
             ],
           ),
         ),
@@ -242,41 +236,6 @@ class _CalculatorPartialScreenState extends State<CalculatorPartialScreen> {
         birthdayDate = picked;
         this.age = AgeModel(birthday: birthdayDate, today: todayDate);
         this.lifeTime = LifeTime(age);
-        //this._createNextBirthdaysList();
       });
   }
-
-  // _menuSelect(BuildContext context, RoutePopupMenuItem choice) async {
-  //   if (choice.title == 'Date Format') {
-  //     print('Date Format');
-  //     //var formatSelected = await Navigator.pushNamed(context, choice.route);
-  //     var formatSelected = await Navigator.push(
-  //         context,
-  //         MaterialPageRoute(
-  //             builder: (context) =>
-  //                 FormatChoiceScreen(selectedFormat: format)));
-  //     setState(() {
-  //       this.format = formatSelected;
-  //       formatter = DateFormat(format);
-  //       this._createNextBirthdaysList();
-  //     });
-  //   }
-  //   if (choice.title == 'Share') {
-  //     _share(context);
-  //   }
-  // }
-
-  // _share(BuildContext context) {
-  //   final RenderBox box = context.findRenderObject();
-  //   String message =
-  //       "https://play.google.com/store/apps/details?id=com.festa.age_calculator";
-  //   if (lifeTime != null) {
-  //     message = "I'm ${lifeTime.days} days old.\n" +
-  //         "My next birthday is in ${age.daysToNextBD} days.\n\n" +
-  //         message;
-  //   }
-  //   Share.share(message,
-  //       subject: 'Age Calculator',
-  //       sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size);
-  // }
 }

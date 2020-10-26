@@ -68,6 +68,20 @@ class _HomeState extends State<Home> {
     return list;
   }
 
+  // _share(BuildContext context) {
+  //   final RenderBox box = context.findRenderObject();
+  //   String message =
+  //       "https://play.google.com/store/apps/details?id=com.festa.age_calculator";
+  //   if (lifeTime != null) {
+  //     message = "I'm ${lifeTime.days} days old.\n" +
+  //         "My next birthday is in ${age.daysToNextBD} days.\n\n" +
+  //         message;
+  //   }
+  //   Share.share(message,
+  //       subject: 'Age Calculator',
+  //       sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size);
+  // }
+
   _menuSelect(BuildContext context, RoutePopupMenuItem choice) async {
     if (choice.title == 'Settings') {
       Navigator.pushNamed(context, choice.route);
