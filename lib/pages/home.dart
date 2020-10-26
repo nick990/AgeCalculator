@@ -20,13 +20,15 @@ class _HomeState extends State<Home> {
   final List<Map<String, Object>> _pages = [
     {
       'page': CalculatorPartialScreen(),
-      'title': 'Calculator',
+      'title': 'Age Calculator',
       'icon': Icons.star,
+      'icon_text': 'Calculator',
     },
     {
       'page': MyDatesPartialScreen(),
       'title': 'My Dates',
       'icon': Icons.people,
+      'icon_text': 'My Dates',
     },
   ];
 
@@ -34,7 +36,7 @@ class _HomeState extends State<Home> {
     RoutePopupMenuItem(
       title: 'Settings',
       route: '/settings',
-      icon: Icons.date_range,
+      icon: Icons.settings,
     ),
     RoutePopupMenuItem(
       title: 'Share',
@@ -62,7 +64,7 @@ class _HomeState extends State<Home> {
       var item = BottomNavigationBarItem(
         backgroundColor: Theme.of(context).primaryColor,
         icon: Icon(page['icon']),
-        title: Text(page['title']),
+        title: Text(page['icon_text']),
       );
       list.add(item);
     }
@@ -105,6 +107,7 @@ class _HomeState extends State<Home> {
                       children: [
                         Icon(
                           item.icon,
+                          color: Theme.of(context).accentColor,
                         ),
                         Padding(padding: EdgeInsets.all(8.0)),
                         Text(item.title),

@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           brightness: Brightness.dark,
           primaryColorDark: Colors.deepOrangeAccent,
+          scaffoldBackgroundColor: Colors.white24,
           cardTheme: CardTheme(
             elevation: 10,
             margin: EdgeInsets.all(10),
