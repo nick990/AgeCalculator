@@ -1,8 +1,10 @@
 import 'package:age_calculator/models/Age.dart';
 import 'package:age_calculator/models/Lifetime.dart';
 import 'package:age_calculator/providers/settings_provider.dart';
+import 'package:age_calculator/widgets/age.dart';
 import 'package:age_calculator/widgets/lifetime.dart';
-import 'package:age_calculator/widgets/mycard.dart';
+import 'package:age_calculator/widgets/next_birthdays.dart';
+import 'package:age_calculator/widgets/upcoming_birthdays.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -19,18 +21,6 @@ class _CalculatorPartialScreenState extends State<CalculatorPartialScreen> {
   AgeModel age;
   LifeTime lifeTime;
 
-  List<String> daysOfWeek = [
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-    "Sunday",
-  ];
-
-  List<TableRow> _nextBirthdaysList;
-
   @override
   void initState() {
     birthdayDate = null;
@@ -40,45 +30,11 @@ class _CalculatorPartialScreenState extends State<CalculatorPartialScreen> {
     lifeTime = null;
   }
 
-  void _createNextBirthdaysList(DateFormat formatter) {
-    _nextBirthdaysList = List<TableRow>();
-    List<DateTime> birthdays;
-    if (age != null) {
-      birthdays = age.getNextBirthdaysList();
-      for (int i = 0; i < birthdays.length; i++) {
-        _nextBirthdaysList.add(
-          TableRow(
-            children: [
-              TableCell(
-                child: Padding(
-                  padding: EdgeInsets.all(4.0),
-                  child: Text(
-                    "${formatter.format(birthdays[i])} \t",
-                    textAlign: TextAlign.end,
-                  ),
-                ),
-              ),
-              TableCell(
-                child: Padding(
-                  padding: EdgeInsets.all(4.0),
-                  child: Text(
-                    "${daysOfWeek[birthdays[i].weekday - 1]}",
-                  ),
-                ),
-              )
-            ],
-          ),
-        );
-      }
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final settingsProvider = Provider.of<SettingsProvider>(context);
     final format = settingsProvider.format;
     final formatter = DateFormat(format);
-    _createNextBirthdaysList(formatter);
 
     var birthdaySelector = Padding(
       padding: EdgeInsets.all(16.0),
@@ -141,79 +97,16 @@ class _CalculatorPartialScreenState extends State<CalculatorPartialScreen> {
       ),
     );
 
-    var ageSection = MyCard(
-      title: 'Age',
-      body: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Column(
-            children: [
-              Text(
-                this.age != null ? age.years.toString() : '-',
-                style: Theme.of(context).textTheme.headline3,
-              ),
-              Text('Years'),
-            ],
-          ),
-          Column(
-            children: [
-              Text(
-                this.age != null ? age.months.toString() : '-',
-                style: Theme.of(context).textTheme.headline3,
-              ),
-              Text('Months'),
-            ],
-          ),
-          Column(
-            children: [
-              Text(
-                this.age != null ? age.days.toString() : '-',
-                style: Theme.of(context).textTheme.headline3,
-              ),
-              Text('Days'),
-            ],
-          ),
-        ],
-      ),
-    );
-
-    var upcomingBirthdaysSection = MyCard(
-      title: 'Upcoming Birthdays',
-      body: Table(
-        children: _nextBirthdaysList,
-      ),
-    );
-
-    var nextBirthdaySection = MyCard(
-      title: 'Next Birthdays',
-      body: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Column(
-            children: [
-              Text(
-                this.age != null ? age.daysToNextBD.toString() : '-',
-                style: Theme.of(context).textTheme.headline3,
-              ),
-              Text('Days'),
-            ],
-          ),
-        ],
-      ),
-    );
-
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
           child: Column(
             children: [
               datesSection,
-              ageSection,
-              LifetimeWidget(
-                lifetime: lifeTime,
-              ),
-              nextBirthdaySection,
-              upcomingBirthdaysSection,
+              AgeWidget(age: age),
+              LifetimeWidget(lifetime: lifeTime),
+              NextBirthdaysWidget(age: age),
+              UpcomingBirthdaysWidget(age: this.age, formatter: formatter),
             ],
           ),
         ),
