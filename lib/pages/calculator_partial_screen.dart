@@ -32,7 +32,8 @@ class _CalculatorPartialScreenState extends State<CalculatorPartialScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final settingsProvider = Provider.of<SettingsProvider>(context);
+    final settingsProvider =
+        Provider.of<SettingsProvider>(context, listen: false);
     final format = settingsProvider.format;
     final formatter = DateFormat(format);
 
@@ -48,11 +49,14 @@ class _CalculatorPartialScreenState extends State<CalculatorPartialScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                birthdayDate != null
-                    ? "${formatter.format(birthdayDate)}"
-                    : " ---",
-                style: Theme.of(context).textTheme.headline3,
+              Consumer<SettingsProvider>(
+                builder: (ctx, settings, child) => Text(
+                  birthdayDate != null
+                      // ? "${formatter.format(birthdayDate)}"
+                      ? "${DateFormat(settings.format).format(birthdayDate)}"
+                      : " ---",
+                  style: Theme.of(context).textTheme.headline3,
+                ),
               ),
               CircleAvatar(
                 radius: 20,
@@ -82,9 +86,12 @@ class _CalculatorPartialScreenState extends State<CalculatorPartialScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      "${formatter.format(todayDate)}",
-                      style: Theme.of(context).textTheme.headline3,
+                    Consumer<SettingsProvider>(
+                      builder: (ctx, settings, child) => Text(
+                        // "${formatter.format(todayDate)}",
+                        "${DateFormat(settings.format).format(todayDate)}",
+                        style: Theme.of(context).textTheme.headline3,
+                      ),
                     ),
                   ],
                 ),
@@ -102,8 +109,14 @@ class _CalculatorPartialScreenState extends State<CalculatorPartialScreen> {
       ageSection.add(AgeWidget(age: age));
       ageSection.add(LifetimeWidget(lifetime: lifeTime));
       ageSection.add(NextBirthdaysWidget(age: age));
-      ageSection
-          .add(UpcomingBirthdaysWidget(age: this.age, formatter: formatter));
+      ageSection.add(
+        Consumer<SettingsProvider>(
+          builder: (ctx, settings, child) => UpcomingBirthdaysWidget(
+            age: this.age,
+            formatter: DateFormat(settings.format),
+          ),
+        ),
+      );
     }
 
     return SafeArea(
