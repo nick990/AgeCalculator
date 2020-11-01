@@ -2,10 +2,10 @@ import 'package:age_calculator/models/Age.dart';
 import 'package:age_calculator/widgets/mycard.dart';
 import 'package:flutter/material.dart';
 
-class NextBirthdaysWidget extends StatelessWidget {
+class NextBirthdayWidget extends StatelessWidget {
   final AgeModel age;
 
-  const NextBirthdaysWidget({Key key, this.age}) : super(key: key);
+  const NextBirthdayWidget({Key key, this.age}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MyCard(

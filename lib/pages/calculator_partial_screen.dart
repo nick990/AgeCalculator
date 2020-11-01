@@ -3,7 +3,7 @@ import 'package:age_calculator/models/Lifetime.dart';
 import 'package:age_calculator/providers/settings_provider.dart';
 import 'package:age_calculator/widgets/age.dart';
 import 'package:age_calculator/widgets/lifetime.dart';
-import 'package:age_calculator/widgets/next_birthdays.dart';
+import 'package:age_calculator/widgets/next_birthday.dart';
 import 'package:age_calculator/widgets/upcoming_birthdays.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -32,11 +32,6 @@ class _CalculatorPartialScreenState extends State<CalculatorPartialScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final settingsProvider =
-        Provider.of<SettingsProvider>(context, listen: false);
-    final format = settingsProvider.format;
-    final formatter = DateFormat(format);
-
     var birthdaySelector = Padding(
       padding: EdgeInsets.all(16.0),
       child: Column(
@@ -108,7 +103,7 @@ class _CalculatorPartialScreenState extends State<CalculatorPartialScreen> {
     if (this.age != null) {
       ageSection.add(AgeWidget(age: age));
       ageSection.add(LifetimeWidget(lifetime: lifeTime));
-      ageSection.add(NextBirthdaysWidget(age: age));
+      ageSection.add(NextBirthdayWidget(age: age));
       ageSection.add(
         Consumer<SettingsProvider>(
           builder: (ctx, settings, child) => UpcomingBirthdaysWidget(
