@@ -17,7 +17,7 @@ class SettingsProvider with ChangeNotifier {
     return _format;
   }
 
-  void set format(String newValue) {
+  set format(String newValue) {
     _format = newValue;
     notifyListeners();
   }
