@@ -1,6 +1,7 @@
 import 'package:age_calculator/providers/mydates_provider.dart';
 import 'package:age_calculator/providers/settings_provider.dart';
 import 'package:age_calculator/widgets/mydate.dart';
+import 'package:age_calculator/widgets/mydate_creation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -12,12 +13,39 @@ class MyDatesPartialScreen extends StatelessWidget {
     final settingsProvider = Provider.of<SettingsProvider>(context);
     return SafeArea(
       child: Scaffold(
-        body: ListView.builder(
-          itemBuilder: (_, i) => MyDateWidget(
-            myDate: myDatesProvider.myDates[i],
-            formatter: DateFormat(settingsProvider.format),
+        body: Column(children: [
+          Expanded(
+            child: ListView.builder(
+              padding: EdgeInsets.only(
+                bottom: 50,
+                top: 10,
+              ),
+              itemBuilder: (_, i) => MyDateWidget(
+                myDate: myDatesProvider.myDates[i],
+                formatter: DateFormat(settingsProvider.format),
+              ),
+              itemCount: myDatesProvider.myDates.length,
+            ),
           ),
-          itemCount: myDatesProvider.myDates.length,
+        ]),
+        // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: Theme.of(context).primaryColorDark,
+          onPressed: () {
+            showModalBottomSheet(
+                context: context,
+                builder: (_) {
+                  return MyDateCreationModal(
+                    formatter: DateFormat(settingsProvider.format),
+                  );
+                });
+          },
+          child: IconButton(
+            icon: Icon(
+              Icons.add,
+              color: Colors.white,
+            ),
+          ),
         ),
       ),
     );

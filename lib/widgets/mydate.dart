@@ -11,7 +11,7 @@ class MyDateWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.symmetric(horizontal: 15, vertical: 4),
+      margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ListTile(
