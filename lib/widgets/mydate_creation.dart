@@ -1,5 +1,8 @@
+import 'package:age_calculator/models/MyDate.dart';
+import 'package:age_calculator/providers/mydates_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class MyDateCreationModal extends StatefulWidget {
   final DateFormat formatter;
@@ -22,13 +25,14 @@ class _MyDateCreationModalState extends State<MyDateCreationModal> {
     birthdayDate = todayDate;
   }
 
-  void _submitData() {
-    print('submited');
+  void _submitData(BuildContext context) {
     final enteredName = nameController.text;
     if (enteredName.isEmpty) {
       return;
     }
-    print(enteredName);
+    var newDate = MyDate(name: enteredName, birthday: this.birthdayDate);
+    Provider.of<MyDatesProvider>(context, listen: false).add(newDate);
+    Navigator.of(context).pop();
   }
 
   _selectBirthdayDate(BuildContext context) async {
@@ -87,7 +91,6 @@ class _MyDateCreationModalState extends State<MyDateCreationModal> {
                           decoration: InputDecoration(
                             labelText: 'Birthday',
                             border: const OutlineInputBorder(),
-                            // disabledBorder: const OutlineInputBorder(),
                             suffixIcon: Icon(
                               Icons.date_range,
                               color: Theme.of(context).accentColor,
@@ -99,23 +102,13 @@ class _MyDateCreationModalState extends State<MyDateCreationModal> {
                         ),
                       ),
                     ),
-                    // SizedBox(
-                    //   width: 50,
-                    // ),
-                    // CircleAvatar(
-                    //   radius: 20,
-                    //   child: IconButton(
-                    //     icon: Icon(Icons.date_range),
-                    //     onPressed: () => _selectBirthdayDate(context),
-                    //   ),
-                    // ),
                   ],
                 ),
               ),
               RaisedButton(
-                onPressed: _submitData,
+                onPressed: () => _submitData(context),
                 child: Text(
-                  'Add',
+                  'Save',
                 ),
               ),
             ],

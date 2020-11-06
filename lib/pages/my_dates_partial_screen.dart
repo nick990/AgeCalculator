@@ -28,7 +28,6 @@ class MyDatesPartialScreen extends StatelessWidget {
             ),
           ),
         ]),
-        // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: FloatingActionButton(
           backgroundColor: Theme.of(context).primaryColorDark,
           onPressed: () {

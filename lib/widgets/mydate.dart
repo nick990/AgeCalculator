@@ -22,11 +22,9 @@ class MyDateWidget extends StatelessWidget {
           subtitle: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Text("Birthday: ${this.formatter.format(myDate.birthday)}"),
               Text("${this.myDate.age.years} Years Old"),
             ],
           ),
-          // trailing: IconButton(icon: Icon(Icons.delete), onPressed: null),
           trailing: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             mainAxisAlignment: MainAxisAlignment.center,
