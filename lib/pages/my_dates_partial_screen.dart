@@ -39,11 +39,9 @@ class MyDatesPartialScreen extends StatelessWidget {
                   );
                 });
           },
-          child: IconButton(
-            icon: Icon(
-              Icons.add,
-              color: Colors.white,
-            ),
+          child: Icon(
+            Icons.add,
+            color: Colors.white,
           ),
         ),
       ),

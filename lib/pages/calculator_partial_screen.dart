@@ -16,6 +16,8 @@ class CalculatorPartialScreen extends StatefulWidget {
 }
 
 class _CalculatorPartialScreenState extends State<CalculatorPartialScreen> {
+  final birthdayController = TextEditingController();
+  final todayController = TextEditingController();
   DateTime birthdayDate;
   DateTime todayDate;
   AgeModel age;
@@ -30,34 +32,73 @@ class _CalculatorPartialScreenState extends State<CalculatorPartialScreen> {
     lifeTime = null;
   }
 
+  _setBirthdayController(DateFormat formatter) {
+    if (birthdayDate != null)
+      birthdayController.text = "${formatter.format(birthdayDate)}";
+  }
+
+  _setTodayController(DateFormat formatter) {
+    todayController.text = "${formatter.format(todayDate)}";
+  }
+
   @override
   Widget build(BuildContext context) {
+    final settingsProvider = Provider.of<SettingsProvider>(context);
+    final formatter = DateFormat(settingsProvider.format);
+    _setTodayController(formatter);
+    _setBirthdayController(formatter);
+
     var birthdaySelector = Padding(
       padding: EdgeInsets.all(16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Birthday',
-            style: Theme.of(context).textTheme.headline5,
-          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Consumer<SettingsProvider>(
-                builder: (ctx, settings, child) => Text(
-                  birthdayDate != null
-                      // ? "${formatter.format(birthdayDate)}"
-                      ? "${DateFormat(settings.format).format(birthdayDate)}"
-                      : " ---",
-                  style: Theme.of(context).textTheme.headline3,
+              Expanded(
+                child: GestureDetector(
+                  onTap: () => _selectBirthdayDate(context),
+                  child: TextField(
+                    style: Theme.of(context).textTheme.headline4,
+                    decoration: InputDecoration(
+                      labelText: 'Birthday',
+                      border: const OutlineInputBorder(),
+                      suffixIcon: Icon(
+                        Icons.date_range,
+                        color: Theme.of(context).accentColor,
+                      ),
+                    ),
+                    controller: birthdayController,
+                    enabled: false,
+                    onSubmitted: (_) {},
+                  ),
                 ),
               ),
-              CircleAvatar(
-                radius: 20,
-                child: IconButton(
-                  icon: Icon(Icons.edit),
-                  onPressed: () => _selectBirthdayDate(context),
+            ],
+          ),
+        ],
+      ),
+    );
+
+    var todaySection = Padding(
+      padding: EdgeInsets.all(16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: TextField(
+                  style: Theme.of(context).textTheme.headline4,
+                  decoration: InputDecoration(
+                    labelText: 'Today',
+                    border: const OutlineInputBorder(),
+                  ),
+                  controller: todayController,
+                  enabled: false,
+                  onSubmitted: (_) {},
                 ),
               ),
             ],
@@ -69,30 +110,7 @@ class _CalculatorPartialScreenState extends State<CalculatorPartialScreen> {
     var datesSection = Card(
       child: Column(
         children: [
-          Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Today',
-                  style: Theme.of(context).textTheme.headline5,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Consumer<SettingsProvider>(
-                      builder: (ctx, settings, child) => Text(
-                        // "${formatter.format(todayDate)}",
-                        "${DateFormat(settings.format).format(todayDate)}",
-                        style: Theme.of(context).textTheme.headline3,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
+          todaySection,
           Divider(),
           birthdaySelector,
         ],
@@ -104,14 +122,8 @@ class _CalculatorPartialScreenState extends State<CalculatorPartialScreen> {
       ageSection.add(AgeWidget(age: age));
       ageSection.add(LifetimeWidget(lifetime: lifeTime));
       ageSection.add(NextBirthdayWidget(age: age));
-      ageSection.add(
-        Consumer<SettingsProvider>(
-          builder: (ctx, settings, child) => UpcomingBirthdaysWidget(
-            age: this.age,
-            formatter: DateFormat(settings.format),
-          ),
-        ),
-      );
+      ageSection
+          .add(UpcomingBirthdaysWidget(age: this.age, formatter: formatter));
     }
 
     return SafeArea(
