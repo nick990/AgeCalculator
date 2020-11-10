@@ -8,10 +8,7 @@ class MyDate {
   final DateTime birthday;
   AgeModel age;
 
-  MyDate({
-    @required this.name,
-    @required this.birthday,
-  }) {
+  MyDate({@required this.name, @required this.birthday, this.id}) {
     this.age = AgeModel.today(birthday: this.birthday);
   }
 

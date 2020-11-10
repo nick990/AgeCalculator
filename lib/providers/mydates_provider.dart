@@ -29,8 +29,13 @@ class MyDatesProvider with ChangeNotifier {
   }
 
   void add(MyDate newDate) async {
-    var id = await MyDatesSqlRepository.instance.insert(newDate);
-    newDate.id = id;
+    await MyDatesSqlRepository.instance.insert(newDate);
+    _fetch();
+  }
+
+  void remove(int id) async {
+    //this._myDates.removeWhere((element) => element.id == id);
+    await MyDatesSqlRepository.instance.delete(id);
     _fetch();
   }
 }

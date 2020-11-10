@@ -56,9 +56,4 @@ class MyDatesSqlRepository {
     Database db = await instance.database;
     return await db.delete(table, where: '$columnId = ?', whereArgs: [id]);
   }
-
-  Future<void> clearTable() async {
-    Database db = await instance.database;
-    return await db.rawQuery("DELETE FROM $table");
-  }
 }
