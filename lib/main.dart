@@ -1,4 +1,5 @@
 import 'package:age_calculator/pages/home.dart';
+import 'package:age_calculator/pages/my_date_details_screen.dart';
 import 'package:age_calculator/pages/settings_screen.dart';
 import 'package:age_calculator/providers/mydates_provider.dart';
 import 'package:age_calculator/providers/settings_provider.dart';
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
         routes: {
           '/': (context) => Home(),
           "/settings": (context) => SettingsPartialScreen(),
+          MyDateDetailsScreen.routeName: (context) => MyDateDetailsScreen(),
         },
       ),
     );
