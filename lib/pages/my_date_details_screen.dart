@@ -48,6 +48,10 @@ class MyDateDetailsScreen extends StatelessWidget {
             myDate.name,
             style: Theme.of(context).textTheme.headline3,
           ),
+          actions: <Widget>[
+            IconButton(icon: Icon(Icons.edit), onPressed: () => {}),
+            IconButton(icon: Icon(Icons.delete), onPressed: () => {}),
+          ],
         ),
         body: SingleChildScrollView(
           child: Column(
