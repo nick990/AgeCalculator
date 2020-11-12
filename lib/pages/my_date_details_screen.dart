@@ -1,4 +1,5 @@
 import 'package:age_calculator/models/Lifetime.dart';
+import 'package:age_calculator/providers/mydates_provider.dart';
 import 'package:age_calculator/providers/settings_provider.dart';
 import 'package:age_calculator/widgets/age.dart';
 import 'package:age_calculator/widgets/lifetime.dart';
@@ -20,6 +21,9 @@ class MyDateDetailsScreen extends StatelessWidget {
     final LifeTime lifetime = LifeTime(myDate.age);
     final settingsProvider = Provider.of<SettingsProvider>(context);
     final formatter = DateFormat(settingsProvider.format);
+
+    final myDatesProvider =
+        Provider.of<MyDatesProvider>(context, listen: false);
 
     final List<Widget> ageSection = new List<Widget>();
     ageSection.add(AgeWidget(age: myDate.age));
@@ -49,8 +53,13 @@ class MyDateDetailsScreen extends StatelessWidget {
             style: Theme.of(context).textTheme.headline3,
           ),
           actions: <Widget>[
-            IconButton(icon: Icon(Icons.edit), onPressed: () => {}),
-            IconButton(icon: Icon(Icons.delete), onPressed: () => {}),
+            IconButton(icon: Icon(Icons.edit), onPressed: () {}),
+            IconButton(
+                icon: Icon(Icons.delete),
+                onPressed: () {
+                  myDatesProvider.remove(myDate.id);
+                  Navigator.of(context).pop();
+                }),
           ],
         ),
         body: SingleChildScrollView(
