@@ -4,8 +4,8 @@ import 'Age.dart';
 
 class MyDate {
   int id;
-  final String name;
-  final DateTime birthday;
+  String name;
+  DateTime birthday;
   AgeModel age;
 
   MyDate({@required this.name, @required this.birthday, this.id}) {
@@ -18,5 +18,11 @@ class MyDate {
       'name': name,
       'birthday': (birthday.toUtc().millisecondsSinceEpoch / 1000).round()
     };
+  }
+
+  Update(String name, DateTime birthday) {
+    this.name = name;
+    this.birthday = birthday;
+    this.age = AgeModel.today(birthday: this.birthday);
   }
 }

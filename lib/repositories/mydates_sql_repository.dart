@@ -56,4 +56,14 @@ class MyDatesSqlRepository {
     Database db = await instance.database;
     return await db.delete(table, where: '$columnId = ?', whereArgs: [id]);
   }
+
+  Future<int> update(MyDate myDate) async {
+    Database db = await instance.database;
+    return await db.update(
+      table,
+      myDate.toMap(),
+      where: "id = ?",
+      whereArgs: [myDate.id],
+    );
+  }
 }

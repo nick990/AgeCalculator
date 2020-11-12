@@ -4,6 +4,7 @@ import 'package:age_calculator/providers/settings_provider.dart';
 import 'package:age_calculator/widgets/age.dart';
 import 'package:age_calculator/widgets/lifetime.dart';
 import 'package:age_calculator/widgets/mycard.dart';
+import 'package:age_calculator/widgets/mydate_edit.dart';
 import 'package:age_calculator/widgets/next_birthday.dart';
 import 'package:age_calculator/widgets/upcoming_birthdays.dart';
 import 'package:flutter/material.dart';
@@ -22,8 +23,7 @@ class MyDateDetailsScreen extends StatelessWidget {
     final settingsProvider = Provider.of<SettingsProvider>(context);
     final formatter = DateFormat(settingsProvider.format);
 
-    final myDatesProvider =
-        Provider.of<MyDatesProvider>(context, listen: false);
+    final myDatesProvider = Provider.of<MyDatesProvider>(context, listen: true);
 
     final List<Widget> ageSection = new List<Widget>();
     ageSection.add(AgeWidget(age: myDate.age));
@@ -53,7 +53,18 @@ class MyDateDetailsScreen extends StatelessWidget {
             style: Theme.of(context).textTheme.headline3,
           ),
           actions: <Widget>[
-            IconButton(icon: Icon(Icons.edit), onPressed: () {}),
+            IconButton(
+                icon: Icon(Icons.edit),
+                onPressed: () {
+                  showModalBottomSheet(
+                      context: context,
+                      builder: (_) {
+                        return MyDateEditModal(
+                          formatter: DateFormat(settingsProvider.format),
+                          myDate: myDate,
+                        );
+                      });
+                }),
             IconButton(
                 icon: Icon(Icons.delete),
                 onPressed: () {
