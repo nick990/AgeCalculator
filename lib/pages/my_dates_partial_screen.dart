@@ -41,6 +41,7 @@ class MyDatesPartialScreen extends StatelessWidget {
           },
           child: Icon(
             Icons.add,
+            size: 40,
             color: Colors.white,
           ),
         ),

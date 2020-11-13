@@ -6,8 +6,10 @@ import 'package:provider/provider.dart';
 
 class MyDateCreationModal extends StatefulWidget {
   final DateFormat formatter;
+  DateTime birthday;
 
-  const MyDateCreationModal({Key key, this.formatter}) : super(key: key);
+  MyDateCreationModal({Key key, this.formatter}) : super(key: key);
+  MyDateCreationModal.givenBirthday({this.formatter, this.birthday});
   @override
   _MyDateCreationModalState createState() => _MyDateCreationModalState();
 }
@@ -20,9 +22,13 @@ class _MyDateCreationModalState extends State<MyDateCreationModal> {
 
   @override
   void initState() {
-    var now = DateTime.now();
-    todayDate = new DateTime(now.year, now.month, now.day);
-    birthdayDate = todayDate;
+    if (widget.birthday != null) {
+      this.birthdayDate = widget.birthday;
+    } else {
+      var now = DateTime.now();
+      this.todayDate = new DateTime(now.year, now.month, now.day);
+      this.birthdayDate = todayDate;
+    }
   }
 
   void _submitData(BuildContext context) {

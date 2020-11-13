@@ -3,6 +3,7 @@ import 'package:age_calculator/models/Lifetime.dart';
 import 'package:age_calculator/providers/settings_provider.dart';
 import 'package:age_calculator/widgets/age.dart';
 import 'package:age_calculator/widgets/lifetime.dart';
+import 'package:age_calculator/widgets/mydate_creation.dart';
 import 'package:age_calculator/widgets/next_birthday.dart';
 import 'package:age_calculator/widgets/upcoming_birthdays.dart';
 import 'package:flutter/material.dart';
@@ -126,6 +127,28 @@ class _CalculatorPartialScreenState extends State<CalculatorPartialScreen> {
           .add(UpcomingBirthdaysWidget(age: this.age, formatter: formatter));
     }
 
+    final FloatingActionButton floatingActionButton =
+        (this.birthdayDate == null)
+            ? null
+            : FloatingActionButton(
+                backgroundColor: Theme.of(context).primaryColorDark,
+                onPressed: () {
+                  showModalBottomSheet(
+                      context: context,
+                      builder: (_) {
+                        return MyDateCreationModal.givenBirthday(
+                          formatter: DateFormat(settingsProvider.format),
+                          birthday: this.birthdayDate,
+                        );
+                      });
+                },
+                child: Icon(
+                  Icons.save,
+                  size: 40,
+                  color: Colors.white,
+                ),
+              );
+
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -136,6 +159,7 @@ class _CalculatorPartialScreenState extends State<CalculatorPartialScreen> {
             ],
           ),
         ),
+        floatingActionButton: floatingActionButton,
       ),
     );
   }
