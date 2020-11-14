@@ -26,7 +26,6 @@ class _CalculatorPartialScreenState extends State<CalculatorPartialScreen> {
 
   @override
   void initState() {
-    birthdayDate = null;
     var now = DateTime.now();
     todayDate = new DateTime(now.year, now.month, now.day);
     age = null;
@@ -45,9 +44,14 @@ class _CalculatorPartialScreenState extends State<CalculatorPartialScreen> {
   @override
   Widget build(BuildContext context) {
     final settingsProvider = Provider.of<SettingsProvider>(context);
+    this.birthdayDate = settingsProvider.birthday;
     final formatter = DateFormat(settingsProvider.format);
     _setTodayController(formatter);
     _setBirthdayController(formatter);
+    if (this.birthdayDate != null) {
+      this.age = AgeModel.today(birthday: birthdayDate);
+      this.lifeTime = LifeTime(age);
+    }
 
     var birthdaySelector = Padding(
       padding: EdgeInsets.all(16.0),
@@ -174,11 +178,8 @@ class _CalculatorPartialScreenState extends State<CalculatorPartialScreen> {
         initialDatePickerMode: DatePickerMode.year,
         helpText: 'Select birthday date',
         fieldLabelText: 'Birthday date');
-    if (picked != null && picked != birthdayDate)
-      setState(() {
-        birthdayDate = picked;
-        this.age = AgeModel.today(birthday: birthdayDate);
-        this.lifeTime = LifeTime(age);
-      });
+    if (picked != null && picked != birthdayDate) {
+      Provider.of<SettingsProvider>(context, listen: false).birthday = picked;
+    }
   }
 }

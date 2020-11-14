@@ -12,6 +12,7 @@ class SettingsProvider with ChangeNotifier {
   }
 
   String _format = "dd-MM-yyyy";
+  DateTime _birthday;
 
   String get format {
     return _format;
@@ -19,6 +20,15 @@ class SettingsProvider with ChangeNotifier {
 
   set format(String newValue) {
     _format = newValue;
+    notifyListeners();
+  }
+
+  DateTime get birthday {
+    return _birthday;
+  }
+
+  set birthday(DateTime birthday) {
+    _birthday = birthday;
     notifyListeners();
   }
 }
