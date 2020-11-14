@@ -28,9 +28,10 @@ class MyDatesProvider with ChangeNotifier {
     return [..._myDates];
   }
 
-  void add(MyDate newDate) async {
-    await MyDatesSqlRepository.instance.insert(newDate);
+  Future<int> add(MyDate newDate) async {
+    var res = await MyDatesSqlRepository.instance.insert(newDate);
     _fetch();
+    return res;
   }
 
   void update(MyDate myDate) async {
