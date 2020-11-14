@@ -1,4 +1,5 @@
 import 'package:age_calculator/models/MyDate.dart';
+import 'package:age_calculator/pages/my_date_details_screen.dart';
 import 'package:age_calculator/providers/mydates_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -38,7 +39,11 @@ class _MyDateCreationModalState extends State<MyDateCreationModal> {
     }
     var newDate = MyDate(name: enteredName, birthday: this.birthdayDate);
     Provider.of<MyDatesProvider>(context, listen: false).add(newDate);
-    Navigator.of(context).pop();
+    Navigator.pushReplacementNamed(
+      context,
+      MyDateDetailsScreen.routeName,
+      arguments: newDate,
+    );
   }
 
   _selectBirthdayDate(BuildContext context) async {
