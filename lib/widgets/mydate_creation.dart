@@ -32,13 +32,15 @@ class _MyDateCreationModalState extends State<MyDateCreationModal> {
     }
   }
 
-  void _submitData(BuildContext context) {
+  void _submitData(BuildContext context) async {
     final enteredName = nameController.text;
     if (enteredName.isEmpty) {
       return;
     }
     var newDate = MyDate(name: enteredName, birthday: this.birthdayDate);
-    Provider.of<MyDatesProvider>(context, listen: false).add(newDate);
+    var newId =
+        await Provider.of<MyDatesProvider>(context, listen: false).add(newDate);
+    newDate.id = newId;
     Navigator.pushReplacementNamed(
       context,
       MyDateDetailsScreen.routeName,
