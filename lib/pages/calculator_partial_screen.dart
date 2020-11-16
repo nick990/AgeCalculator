@@ -3,6 +3,7 @@ import 'package:age_calculator/models/Lifetime.dart';
 import 'package:age_calculator/providers/settings_provider.dart';
 import 'package:age_calculator/themes/app_theme.dart';
 import 'package:age_calculator/widgets/age.dart';
+import 'package:age_calculator/widgets/gradient_floating_action_button.dart';
 import 'package:age_calculator/widgets/gradient_icon.dart';
 import 'package:age_calculator/widgets/lifetime.dart';
 import 'package:age_calculator/widgets/mydate_creation.dart';
@@ -138,35 +139,22 @@ class _CalculatorPartialScreenState extends State<CalculatorPartialScreen> {
 
     final Widget floatingActionButton = (this.birthdayDate == null)
         ? null
-        : SizedBox(
-            width: AppTheme.floatingButtonSize,
-            height: AppTheme.floatingButtonSize,
-            child: FloatingActionButton(
-              // backgroundColor: Colors.transparent,
-              elevation: AppTheme.floatingButtonElevation,
-              onPressed: () {
-                showModalBottomSheet(
-                    context: context,
-                    builder: (_) {
-                      return MyDateCreationModal.givenBirthday(
-                        formatter: DateFormat(settingsProvider.format),
-                        birthday: this.birthdayDate,
-                      );
-                    });
-              },
-              child: Container(
-                width: AppTheme.floatingButtonSize,
-                height: AppTheme.floatingButtonSize,
-                child: Icon(
-                  Icons.save,
-                  size: AppTheme.floatinButtonIconSize,
-                ),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  gradient: AppTheme.gradient2,
-                ),
-              ),
-            ),
+        : GradientFloatingActionButton(
+            elevation: AppTheme.floatingButtonElevation,
+            gradient: AppTheme.gradient2,
+            iconData: Icons.save,
+            iconSize: AppTheme.floatinButtonIconSize,
+            size: AppTheme.floatingButtonSize,
+            onPressed: () {
+              showModalBottomSheet(
+                  context: context,
+                  builder: (_) {
+                    return MyDateCreationModal.givenBirthday(
+                      formatter: DateFormat(settingsProvider.format),
+                      birthday: this.birthdayDate,
+                    );
+                  });
+            },
           );
 
     return SafeArea(

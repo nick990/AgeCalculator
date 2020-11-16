@@ -1,5 +1,7 @@
 import 'package:age_calculator/providers/mydates_provider.dart';
 import 'package:age_calculator/providers/settings_provider.dart';
+import 'package:age_calculator/themes/app_theme.dart';
+import 'package:age_calculator/widgets/gradient_floating_action_button.dart';
 import 'package:age_calculator/widgets/mydate.dart';
 import 'package:age_calculator/widgets/mydate_creation.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +30,12 @@ class MyDatesPartialScreen extends StatelessWidget {
             ),
           ),
         ]),
-        floatingActionButton: FloatingActionButton(
+        floatingActionButton: GradientFloatingActionButton(
+          elevation: AppTheme.floatingButtonElevation,
+          gradient: AppTheme.gradient2,
+          iconData: Icons.add,
+          iconSize: AppTheme.floatinButtonIconSize,
+          size: AppTheme.floatingButtonSize,
           onPressed: () {
             showModalBottomSheet(
                 context: context,
@@ -38,10 +45,6 @@ class MyDatesPartialScreen extends StatelessWidget {
                   );
                 });
           },
-          child: Icon(
-            Icons.add,
-            size: 40,
-          ),
         ),
       ),
     );
