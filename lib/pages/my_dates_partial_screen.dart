@@ -29,7 +29,6 @@ class MyDatesPartialScreen extends StatelessWidget {
           ),
         ]),
         floatingActionButton: FloatingActionButton(
-          backgroundColor: Theme.of(context).primaryColorDark,
           onPressed: () {
             showModalBottomSheet(
                 context: context,
@@ -42,7 +41,6 @@ class MyDatesPartialScreen extends StatelessWidget {
           child: Icon(
             Icons.add,
             size: 40,
-            color: Colors.white,
           ),
         ),
       ),

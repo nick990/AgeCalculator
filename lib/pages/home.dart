@@ -1,5 +1,7 @@
 import 'package:age_calculator/pages/calculator_partial_screen.dart';
 import 'package:age_calculator/pages/my_dates_partial_screen.dart';
+import 'package:age_calculator/themes/app_theme.dart';
+import 'package:age_calculator/widgets/gradient_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
 
@@ -61,7 +63,6 @@ class _HomeState extends State<Home> {
     var list = List<BottomNavigationBarItem>();
     for (var page in _pages) {
       var item = BottomNavigationBarItem(
-        backgroundColor: Theme.of(context).primaryColor,
         icon: Icon(page['icon']),
         title: Text(page['icon_text']),
       );
@@ -92,7 +93,11 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(_pages[_selectedPageIndex]['title']),
+        //backgroundColor: AppTheme.appBarBackgroundColor,
+        title: Text(
+          _pages[_selectedPageIndex]['title'],
+          style: AppTheme.appBarTextStyle,
+        ),
         actions: [
           PopupMenuButton<RoutePopupMenuItem>(
             onSelected: (choice) {
@@ -106,7 +111,7 @@ class _HomeState extends State<Home> {
                       children: [
                         Icon(
                           item.icon,
-                          color: Theme.of(context).accentColor,
+                          color: AppTheme.color1,
                         ),
                         Padding(padding: EdgeInsets.all(8.0)),
                         Text(item.title),
@@ -120,12 +125,10 @@ class _HomeState extends State<Home> {
       body: _pages[_selectedPageIndex]['page'],
       bottomNavigationBar: BottomNavigationBar(
         onTap: _selectPage,
-        backgroundColor: Theme.of(context).primaryColor,
-        unselectedItemColor: Colors.white,
-        selectedItemColor: Theme.of(context).accentColor,
         currentIndex: _selectedPageIndex,
         type: BottomNavigationBarType.fixed,
         items: this.buildBottomNavigationBarItems(),
+        selectedItemColor: AppTheme.color1,
       ),
     );
   }

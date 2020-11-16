@@ -1,4 +1,6 @@
 import 'package:age_calculator/providers/settings_provider.dart';
+import 'package:age_calculator/themes/app_theme.dart';
+import 'package:age_calculator/widgets/mycard.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -27,54 +29,89 @@ class _SettingsPartialScreenState extends State<SettingsPartialScreen> {
     final settingsProvider = Provider.of<SettingsProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Settings'),
+        title: Text(
+          'Settings',
+          style: AppTheme.appBarTextStyle,
+        ),
       ),
       body: Column(
         children: [
-          Card(
-            child: Column(
+          MyCard(
+            title: 'Date Format',
+            body: Column(
               children: [
-                Column(
-                  children: [
-                    Row(
+                ...settingsProvider.availableFormats
+                    .asMap()
+                    .entries
+                    .map((entry) {
+                  String format = entry.value;
+                  return Container(
+                    child: Row(
                       children: [
-                        Expanded(
-                          child: Container(
-                            padding: EdgeInsets.all(6),
-                            color: Theme.of(context).primaryColor,
-                            child: Text(
-                              'Date Format',
-                              style: Theme.of(context).textTheme.headline6,
-                            ),
-                          ),
+                        Radio(
+                          activeColor: AppTheme.color2,
+                          groupValue: this.format,
+                          onChanged: (format) => _radioChanged(format),
+                          value: format,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(8),
+                        ),
+                        Text(
+                          format,
+                          style: Theme.of(context).textTheme.headline5,
                         ),
                       ],
                     ),
-                    ...settingsProvider.availableFormats
-                        .asMap()
-                        .entries
-                        .map((entry) {
-                      String format = entry.value;
-                      return Container(
-                          child: Row(
-                        children: [
-                          Radio(
-                            activeColor: Theme.of(context).primaryColorDark,
-                            groupValue: this.format,
-                            onChanged: (format) => _radioChanged(format),
-                            value: format,
-                          ),
-                          Text(
-                            format,
-                          ),
-                        ],
-                      ));
-                    }).toList(),
-                  ],
-                ),
+                  );
+                }).toList()
               ],
             ),
-          )
+          ),
+          // Card(
+          //   child: Column(
+          //     children: [
+          //       Column(
+          //         children: [
+          //           Row(
+          //             children: [
+          //               Expanded(
+          //                 child: Container(
+          //                   padding: EdgeInsets.all(6),
+          //                   color: Theme.of(context).primaryColor,
+          //                   child: Text(
+          //                     'Date Format',
+          //                     style: Theme.of(context).textTheme.headline4,
+          //                   ),
+          //                 ),
+          //               ),
+          //             ],
+          //           ),
+          //           ...settingsProvider.availableFormats
+          //               .asMap()
+          //               .entries
+          //               .map((entry) {
+          //             String format = entry.value;
+          //             return Container(
+          //                 child: Row(
+          //               children: [
+          //                 Radio(
+          //                   activeColor: Theme.of(context).primaryColorDark,
+          //                   groupValue: this.format,
+          //                   onChanged: (format) => _radioChanged(format),
+          //                   value: format,
+          //                 ),
+          //                 Text(
+          //                   format,
+          //                 ),
+          //               ],
+          //             ));
+          //           }).toList(),
+          //         ],
+          //       ),
+          //     ],
+          //   ),
+          // )
         ],
       ),
     );
