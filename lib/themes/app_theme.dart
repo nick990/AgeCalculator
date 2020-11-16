@@ -82,4 +82,8 @@ class AppTheme {
       )
       //borderSide: BorderSide(width: 2, color: AppTheme.color4),
       );
+
+  static final double floatingButtonSize = 65;
+  static final double floatinButtonIconSize = 40;
+  static final double floatingButtonElevation = 20;
 }

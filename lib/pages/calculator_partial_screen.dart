@@ -136,34 +136,38 @@ class _CalculatorPartialScreenState extends State<CalculatorPartialScreen> {
           .add(UpcomingBirthdaysWidget(age: this.age, formatter: formatter));
     }
 
-    final FloatingActionButton floatingActionButton =
-        (this.birthdayDate == null)
-            ? null
-            : FloatingActionButton(
-                onPressed: () {
-                  showModalBottomSheet(
-                      context: context,
-                      builder: (_) {
-                        return MyDateCreationModal.givenBirthday(
-                          formatter: DateFormat(settingsProvider.format),
-                          birthday: this.birthdayDate,
-                        );
-                      });
-                },
-                child: Container(
-                  width: 60,
-                  height: 60,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    // circular shape
-                    gradient: AppTheme.gradient2,
-                  ),
-                  child: Icon(
-                    Icons.save,
-                    size: 40,
-                  ),
+    final Widget floatingActionButton = (this.birthdayDate == null)
+        ? null
+        : SizedBox(
+            width: AppTheme.floatingButtonSize,
+            height: AppTheme.floatingButtonSize,
+            child: FloatingActionButton(
+              // backgroundColor: Colors.transparent,
+              elevation: AppTheme.floatingButtonElevation,
+              onPressed: () {
+                showModalBottomSheet(
+                    context: context,
+                    builder: (_) {
+                      return MyDateCreationModal.givenBirthday(
+                        formatter: DateFormat(settingsProvider.format),
+                        birthday: this.birthdayDate,
+                      );
+                    });
+              },
+              child: Container(
+                width: AppTheme.floatingButtonSize,
+                height: AppTheme.floatingButtonSize,
+                child: Icon(
+                  Icons.save,
+                  size: AppTheme.floatinButtonIconSize,
                 ),
-              );
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  gradient: AppTheme.gradient2,
+                ),
+              ),
+            ),
+          );
 
     return SafeArea(
       child: Scaffold(

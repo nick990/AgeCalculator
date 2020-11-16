@@ -68,50 +68,6 @@ class _SettingsPartialScreenState extends State<SettingsPartialScreen> {
               ],
             ),
           ),
-          // Card(
-          //   child: Column(
-          //     children: [
-          //       Column(
-          //         children: [
-          //           Row(
-          //             children: [
-          //               Expanded(
-          //                 child: Container(
-          //                   padding: EdgeInsets.all(6),
-          //                   color: Theme.of(context).primaryColor,
-          //                   child: Text(
-          //                     'Date Format',
-          //                     style: Theme.of(context).textTheme.headline4,
-          //                   ),
-          //                 ),
-          //               ),
-          //             ],
-          //           ),
-          //           ...settingsProvider.availableFormats
-          //               .asMap()
-          //               .entries
-          //               .map((entry) {
-          //             String format = entry.value;
-          //             return Container(
-          //                 child: Row(
-          //               children: [
-          //                 Radio(
-          //                   activeColor: Theme.of(context).primaryColorDark,
-          //                   groupValue: this.format,
-          //                   onChanged: (format) => _radioChanged(format),
-          //                   value: format,
-          //                 ),
-          //                 Text(
-          //                   format,
-          //                 ),
-          //               ],
-          //             ));
-          //           }).toList(),
-          //         ],
-          //       ),
-          //     ],
-          //   ),
-          // )
         ],
       ),
     );
