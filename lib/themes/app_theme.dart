@@ -9,6 +9,7 @@ class AppTheme {
   static final Color color2 = Color.fromARGB(255, 114, 50, 189);
   static final Color color3 = Color.fromARGB(255, 255, 220, 125);
   static final Color color4 = Color.fromARGB(255, 244, 111, 48);
+  static final Color color5 = Color.fromARGB(255, 215, 58, 73);
 
   static final gradient1 = LinearGradient(
     colors: <Color>[
@@ -25,6 +26,16 @@ class AppTheme {
       color4,
       color4,
       color3,
+    ],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+  );
+
+  static final gradient3 = LinearGradient(
+    colors: <Color>[
+      color4,
+      color4,
+      color5,
     ],
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,

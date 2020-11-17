@@ -1,6 +1,8 @@
 import 'package:age_calculator/models/MyDate.dart';
 import 'package:age_calculator/pages/my_date_details_screen.dart';
 import 'package:age_calculator/providers/mydates_provider.dart';
+import 'package:age_calculator/themes/app_theme.dart';
+import 'package:age_calculator/widgets/gradient_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -22,10 +24,10 @@ class MyDateWidget extends StatelessWidget {
       },
       background: Container(
         color: Colors.white,
-        child: Icon(
-          Icons.delete,
-          color: Theme.of(context).errorColor,
+        child: GradientIcon(
+          icon: Icons.delete,
           size: 40,
+          gradient: AppTheme.gradient3,
         ),
         alignment: Alignment.centerRight,
         padding: EdgeInsets.only(right: 20),
