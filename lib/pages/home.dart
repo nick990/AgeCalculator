@@ -1,7 +1,7 @@
+import 'package:age_calculator/hour_glass_icons.dart';
 import 'package:age_calculator/pages/calculator_partial_screen.dart';
 import 'package:age_calculator/pages/my_dates_partial_screen.dart';
 import 'package:age_calculator/themes/app_theme.dart';
-import 'package:age_calculator/widgets/gradient_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
 
@@ -22,7 +22,7 @@ class _HomeState extends State<Home> {
     {
       'page': CalculatorPartialScreen(),
       'title': 'Age Calculator',
-      'icon': Icons.star,
+      'icon': HourGlass.hourglass,
       'icon_text': 'Calculator',
     },
     {

@@ -24,15 +24,6 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Age Calculator',
-        // theme: ThemeData(
-        //   brightness: Brightness.dark,
-        //   primaryColorDark: Colors.deepOrangeAccent,
-        //   scaffoldBackgroundColor: Colors.white24,
-        //   cardTheme: CardTheme(
-        //     elevation: 10,
-        //     margin: EdgeInsets.all(10),
-        //   ),
-        // ),
         theme: AppTheme.lightTheme,
         initialRoute: '/',
         routes: {
