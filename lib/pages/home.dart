@@ -2,6 +2,7 @@ import 'package:age_calculator/hour_glass_icons.dart';
 import 'package:age_calculator/pages/calculator_partial_screen.dart';
 import 'package:age_calculator/pages/my_dates_partial_screen.dart';
 import 'package:age_calculator/themes/app_theme.dart';
+import 'package:age_calculator/widgets/gradient_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
 
@@ -109,9 +110,9 @@ class _HomeState extends State<Home> {
                     value: item,
                     child: Row(
                       children: [
-                        Icon(
-                          item.icon,
-                          color: AppTheme.color1,
+                        GradientIcon(
+                          icon: item.icon,
+                          gradient: AppTheme.gradient1,
                         ),
                         Padding(padding: EdgeInsets.all(8.0)),
                         Text(item.title),
