@@ -118,7 +118,7 @@ class _MyDateEditModalState extends State<MyDateEditModal> {
                 height: 20,
               ),
               RaisedButton.icon(
-                color: AppTheme.color3,
+                color: AppTheme.color4,
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
                 onPressed: () => _submitData(context),
                 icon: Icon(
