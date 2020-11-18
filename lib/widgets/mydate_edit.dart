@@ -1,5 +1,7 @@
 import 'package:age_calculator/models/MyDate.dart';
 import 'package:age_calculator/providers/mydates_provider.dart';
+import 'package:age_calculator/themes/app_theme.dart';
+import 'package:age_calculator/widgets/gradient_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -93,9 +95,14 @@ class _MyDateEditModalState extends State<MyDateEditModal> {
                           decoration: InputDecoration(
                             labelText: 'Birthday',
                             border: const OutlineInputBorder(),
-                            suffixIcon: Icon(
-                              Icons.date_range,
-                              color: Theme.of(context).accentColor,
+                            suffixIcon: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 16),
+                              child: GradientIcon(
+                                icon: Icons.date_range,
+                                size: 35,
+                                gradient: AppTheme.gradient1,
+                              ),
                             ),
                           ),
                           controller: birthdayController,
@@ -107,10 +114,21 @@ class _MyDateEditModalState extends State<MyDateEditModal> {
                   ],
                 ),
               ),
-              RaisedButton(
+              SizedBox(
+                height: 20,
+              ),
+              RaisedButton.icon(
+                color: AppTheme.color3,
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
                 onPressed: () => _submitData(context),
-                child: Text(
+                icon: Icon(
+                  Icons.save,
+                  color: Colors.white,
+                  size: 33,
+                ),
+                label: Text(
                   'Save',
+                  style: AppTheme.appBarTextStyle,
                 ),
               ),
             ],

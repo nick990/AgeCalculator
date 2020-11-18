@@ -1,3 +1,4 @@
+import 'package:age_calculator/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class MyCard extends StatelessWidget {
@@ -21,11 +22,13 @@ class MyCard extends StatelessWidget {
                   Expanded(
                     child: Container(
                       padding: EdgeInsets.all(6),
-                      color: Theme.of(context).primaryColor,
+                      decoration: AppTheme.cardTitleDecoration,
                       child: Center(
                         child: Text(
                           this.title,
-                          style: Theme.of(context).textTheme.headline4,
+                          style: Theme.of(context).textTheme.headline4.copyWith(
+                                color: Colors.white,
+                              ),
                         ),
                       ),
                     ),

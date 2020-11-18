@@ -1,6 +1,7 @@
 import 'package:age_calculator/models/Lifetime.dart';
 import 'package:age_calculator/providers/mydates_provider.dart';
 import 'package:age_calculator/providers/settings_provider.dart';
+import 'package:age_calculator/themes/app_theme.dart';
 import 'package:age_calculator/widgets/age.dart';
 import 'package:age_calculator/widgets/lifetime.dart';
 import 'package:age_calculator/widgets/mycard.dart';
@@ -50,7 +51,7 @@ class MyDateDetailsScreen extends StatelessWidget {
         appBar: AppBar(
           title: Text(
             myDate.name,
-            style: Theme.of(context).textTheme.headline3,
+            style: AppTheme.appBarTextStyle,
           ),
           actions: <Widget>[
             IconButton(

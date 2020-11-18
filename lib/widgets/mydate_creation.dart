@@ -1,6 +1,8 @@
 import 'package:age_calculator/models/MyDate.dart';
 import 'package:age_calculator/pages/my_date_details_screen.dart';
 import 'package:age_calculator/providers/mydates_provider.dart';
+import 'package:age_calculator/themes/app_theme.dart';
+import 'package:age_calculator/widgets/gradient_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -34,7 +36,7 @@ class _MyDateCreationModalState extends State<MyDateCreationModal> {
 
   void _submitData(BuildContext context) async {
     final enteredName = nameController.text;
-    if (enteredName.isEmpty) {
+    if (enteredName.isEmpty || enteredName == null) {
       return;
     }
     var newDate = MyDate(name: enteredName, birthday: this.birthdayDate);
@@ -86,7 +88,7 @@ class _MyDateCreationModalState extends State<MyDateCreationModal> {
                 child: TextField(
                   decoration: InputDecoration(
                     labelText: 'Name',
-                    border: const OutlineInputBorder(),
+                    border: AppTheme.textInputBorder,
                   ),
                   controller: nameController,
                   onSubmitted: (_) => {},
@@ -103,10 +105,15 @@ class _MyDateCreationModalState extends State<MyDateCreationModal> {
                         child: TextField(
                           decoration: InputDecoration(
                             labelText: 'Birthday',
-                            border: const OutlineInputBorder(),
-                            suffixIcon: Icon(
-                              Icons.date_range,
-                              color: Theme.of(context).accentColor,
+                            border: AppTheme.textInputBorder,
+                            suffixIcon: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 16),
+                              child: GradientIcon(
+                                icon: Icons.date_range,
+                                size: 35,
+                                gradient: AppTheme.gradient1,
+                              ),
                             ),
                           ),
                           controller: birthdayController,
@@ -118,10 +125,21 @@ class _MyDateCreationModalState extends State<MyDateCreationModal> {
                   ],
                 ),
               ),
-              RaisedButton(
+              SizedBox(
+                height: 20,
+              ),
+              RaisedButton.icon(
+                color: AppTheme.color3,
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
                 onPressed: () => _submitData(context),
-                child: Text(
+                icon: Icon(
+                  Icons.save,
+                  color: Colors.white,
+                  size: 33,
+                ),
+                label: Text(
                   'Save',
+                  style: AppTheme.appBarTextStyle,
                 ),
               ),
             ],

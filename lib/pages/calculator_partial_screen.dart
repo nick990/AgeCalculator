@@ -1,7 +1,10 @@
 import 'package:age_calculator/models/Age.dart';
 import 'package:age_calculator/models/Lifetime.dart';
 import 'package:age_calculator/providers/settings_provider.dart';
+import 'package:age_calculator/themes/app_theme.dart';
 import 'package:age_calculator/widgets/age.dart';
+import 'package:age_calculator/widgets/gradient_floating_action_button.dart';
+import 'package:age_calculator/widgets/gradient_icon.dart';
 import 'package:age_calculator/widgets/lifetime.dart';
 import 'package:age_calculator/widgets/mydate_creation.dart';
 import 'package:age_calculator/widgets/next_birthday.dart';
@@ -68,10 +71,14 @@ class _CalculatorPartialScreenState extends State<CalculatorPartialScreen> {
                     style: Theme.of(context).textTheme.headline4,
                     decoration: InputDecoration(
                       labelText: 'Birthday',
-                      border: const OutlineInputBorder(),
-                      suffixIcon: Icon(
-                        Icons.date_range,
-                        color: Theme.of(context).accentColor,
+                      disabledBorder: AppTheme.textInputBorder,
+                      suffixIcon: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        child: GradientIcon(
+                          icon: Icons.date_range,
+                          size: 45,
+                          gradient: AppTheme.gradient1,
+                        ),
                       ),
                     ),
                     controller: birthdayController,
@@ -98,9 +105,8 @@ class _CalculatorPartialScreenState extends State<CalculatorPartialScreen> {
                 child: TextField(
                   style: Theme.of(context).textTheme.headline4,
                   decoration: InputDecoration(
-                    labelText: 'Today',
-                    border: const OutlineInputBorder(),
-                  ),
+                      labelText: 'Today',
+                      disabledBorder: AppTheme.textInputBorder),
                   controller: todayController,
                   enabled: false,
                   onSubmitted: (_) {},
@@ -131,27 +137,25 @@ class _CalculatorPartialScreenState extends State<CalculatorPartialScreen> {
           .add(UpcomingBirthdaysWidget(age: this.age, formatter: formatter));
     }
 
-    final FloatingActionButton floatingActionButton =
-        (this.birthdayDate == null)
-            ? null
-            : FloatingActionButton(
-                backgroundColor: Theme.of(context).primaryColorDark,
-                onPressed: () {
-                  showModalBottomSheet(
-                      context: context,
-                      builder: (_) {
-                        return MyDateCreationModal.givenBirthday(
-                          formatter: DateFormat(settingsProvider.format),
-                          birthday: this.birthdayDate,
-                        );
-                      });
-                },
-                child: Icon(
-                  Icons.save,
-                  size: 40,
-                  color: Colors.white,
-                ),
-              );
+    final Widget floatingActionButton = (this.birthdayDate == null)
+        ? null
+        : GradientFloatingActionButton(
+            elevation: AppTheme.floatingButtonElevation,
+            gradient: AppTheme.gradient2,
+            iconData: Icons.save,
+            iconSize: AppTheme.floatinButtonIconSize,
+            size: AppTheme.floatingButtonSize,
+            onPressed: () {
+              showModalBottomSheet(
+                  context: context,
+                  builder: (_) {
+                    return MyDateCreationModal.givenBirthday(
+                      formatter: DateFormat(settingsProvider.format),
+                      birthday: this.birthdayDate,
+                    );
+                  });
+            },
+          );
 
     return SafeArea(
       child: Scaffold(
