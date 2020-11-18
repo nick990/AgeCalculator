@@ -41,6 +41,13 @@ class AppTheme {
     end: Alignment.bottomRight,
   );
 
+  static final gradient4 = LinearGradient(
+    colors: <Color>[
+      color3,
+      Colors.white,
+    ],
+  );
+
   static final appBarTextStyle = TextStyle(
     color: titleColor,
     fontSize: 25.0,
