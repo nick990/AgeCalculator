@@ -65,6 +65,7 @@ class AppTheme {
   );
 
   static final ThemeData lightTheme = ThemeData(
+    fontFamily: 'Quicksand',
     brightness: Brightness.light,
     appBarTheme: AppBarTheme(
       centerTitle: true,
