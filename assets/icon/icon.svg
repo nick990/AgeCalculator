@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   inkscape:export-ydpi="96"
+   inkscape:export-xdpi="96"
+   inkscape:export-filename="C:\Users\nicolo.festa\Personal\AgeCalculator\assets\icon\icon.png"
+   width="512"
+   height="512"
+   viewBox="0 0 135.46666 135.46667"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
+   sodipodi:docname="icon.svg">
+  <defs
+     id="defs2">
+    <linearGradient
+       id="linearGradient877-6"
+       inkscape:collect="always">
+      <stop
+         id="stop871"
+         offset="0"
+         style="stop-color:#7232bd;stop-opacity:1;" />
+      <stop
+         id="stop875"
+         offset="1"
+         style="stop-color:#4c5fd7;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient877-6"
+       id="linearGradient910"
+       x1="0.37797618"
+       y1="0.45356786"
+       x2="134.89969"
+       y2="135.58006"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <sodipodi:namedview
+     inkscape:snap-text-baseline="false"
+     inkscape:snap-center="true"
+     inkscape:snap-smooth-nodes="true"
+     inkscape:snap-midpoints="true"
+     inkscape:snap-intersection-paths="true"
+     inkscape:object-paths="true"
+     inkscape:snap-bbox-midpoints="true"
+     inkscape:bbox-paths="true"
+     inkscape:bbox-nodes="true"
+     inkscape:snap-bbox-edge-midpoints="true"
+     inkscape:snap-bbox="true"
+     inkscape:snap-page="true"
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4"
+     inkscape:cx="380.01814"
+     inkscape:cy="258.47439"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     units="px"
+     inkscape:snap-object-midpoints="true"
+     inkscape:window-width="1920"
+     inkscape:window-height="1013"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:snap-global="false" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Livello 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       ry="0"
+       y="-1.7763568e-15"
+       x="0"
+       height="135.46666"
+       width="135.46666"
+       id="rect904"
+       style="opacity:1;fill:url(#linearGradient910);fill-opacity:1;fill-rule:nonzero;stroke-width:0.264583" />
+    <rect
+       style="fill:#000000;fill-opacity:0;stroke-width:0.29045"
+       id="rect885"
+       width="135.46666"
+       height="33.639877"
+       x="-1.7763568e-15"
+       y="37.268803" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:37.9446px;line-height:1.25;font-family:sans-serif;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.948617"
+       x="5.7566271"
+       y="100.01675"
+       id="text876"><tspan
+         id="tspan874"
+         x="5.7566271"
+         y="100.01675"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Quicksand;-inkscape-font-specification:'Quicksand Bold';fill:#ffffff;fill-opacity:1;stroke-width:0.948617"
+         sodipodi:role="line">AGE</tspan></text>
+    <rect
+       y="76.205055"
+       x="2.1934508e-07"
+       height="23.395975"
+       width="135.46666"
+       id="rect885-8"
+       style="fill:#000000;fill-opacity:0;stroke-width:0.242223" />
+    <text
+       id="text876-6"
+       y="124.27837"
+       x="5.1159902"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.9109px;line-height:1.25;font-family:Quicksand;-inkscape-font-specification:Quicksand;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.672771"
+       xml:space="preserve"><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Quicksand;-inkscape-font-specification:Quicksand;fill:#ffffff;fill-opacity:1;stroke-width:0.672771"
+         y="124.27837"
+         x="5.1159902"
+         id="tspan874-2">calculator</tspan></text>
+    <g
+       style="fill:#000000;fill-opacity:0.7263428"
+       transform="matrix(0.01023203,-0.00904681,-0.00904681,-0.01023203,83.805867,101.86581)"
+       fill="#000000"
+       stroke="none"
+       id="g949">
+      <path
+         style="fill:#000000;fill-opacity:0.7263428"
+         d="m 650,4845 v -275 h 134 134 l 4,-197 c 4,-179 7,-207 32,-288 88,-292 255,-625 638,-1273 l 150,-253 -155,-262 C 1211,1661 1041,1321 954,1035 929,953 926,926 922,747 L 918,550 H 784 650 V 275 0 h 1910 1910 v 275 275 h -134 -134 l -4,198 c -4,178 -7,205 -32,287 -87,288 -276,662 -647,1282 -77,127 -139,236 -139,243 0,6 71,131 159,278 238,402 275,467 401,717 120,236 178,373 226,530 25,82 28,109 32,288 l 4,197 h 134 134 v 275 275 H 2560 650 Z m 3268,-452 c -4,-177 -5,-179 -42,-278 -67,-177 -234,-496 -555,-1058 -56,-99 -132,-238 -169,-310 -91,-178 -91,-195 -3,-366 35,-69 151,-280 259,-470 293,-518 418,-764 479,-939 24,-69 27,-94 31,-249 l 4,-173 H 2560 1198 l 4,178 c 5,169 6,181 38,267 66,182 172,388 497,968 230,410 296,542 296,597 0,54 -67,190 -277,563 -325,579 -457,835 -517,1002 -31,86 -32,98 -37,268 l -4,177 h 1362 1362 z"
+         id="path945" />
+      <path
+         style="fill:#000000;fill-opacity:0.7263428"
+         d="m 1600,4007 c 0,-81 4,-102 34,-177 74,-186 145,-320 272,-517 125,-192 250,-354 428,-550 l 101,-112 123,-1 h 122 l 66,70 c 272,288 542,689 710,1054 l 64,138 v 94 94 h -960 -960 z"
+         id="path947" />
+    </g>
+  </g>
+</svg>

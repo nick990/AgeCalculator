@@ -88,14 +88,14 @@ class MyDateWidget extends StatelessWidget {
                     Text(
                       "Birthday: ${this.formatter.format(myDate.birthday)}",
                       style: Theme.of(context).textTheme.bodyText1.copyWith(
-                            color: Colors.black45,
+                            color: Colors.white70,
                             fontSize: 18,
                           ),
                     ),
                     Text(
                       "Next Birthday: ${this.myDate.age.daysToNextBD} days",
                       style: Theme.of(context).textTheme.bodyText1.copyWith(
-                            color: Colors.black45,
+                            color: Colors.white70,
                             fontSize: 18,
                           ),
                     ),
