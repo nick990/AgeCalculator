@@ -1,11 +1,26 @@
 import 'package:age_calculator/models/Lifetime.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import 'mycard.dart';
 
 class LifetimeWidget extends StatelessWidget {
   final LifeTime lifetime;
   LifetimeWidget({this.lifetime});
+
+  String formatNumber(int number) {
+    var numberAsString = number.toString();
+    print(numberAsString);
+    var formattedString = "";
+    for (int i = 0; i < numberAsString.length; i++) {
+      formattedString += numberAsString[i];
+      if ((i != numberAsString.length - 1) &&
+          (numberAsString.length - i - 1) % 3 == 0) {
+        formattedString += ".";
+      }
+    }
+    return formattedString;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +43,7 @@ class LifetimeWidget extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.all(4.0),
                   child: Text(
-                    this.lifetime != null ? lifetime.years.toString() : '-',
+                    formatNumber(lifetime.years),
                   ),
                 ),
               )
@@ -49,7 +64,7 @@ class LifetimeWidget extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.all(4.0),
                   child: Text(
-                    this.lifetime != null ? lifetime.months.toString() : '-',
+                    formatNumber(lifetime.months),
                   ),
                 ),
               )
@@ -70,7 +85,7 @@ class LifetimeWidget extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.all(4.0),
                   child: Text(
-                    this.lifetime != null ? lifetime.days.toString() : '-',
+                    formatNumber(lifetime.days),
                   ),
                 ),
               )
@@ -91,7 +106,7 @@ class LifetimeWidget extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.all(4.0),
                   child: Text(
-                    this.lifetime != null ? lifetime.hours.toString() : '-',
+                    formatNumber(lifetime.hours),
                   ),
                 ),
               )
@@ -112,7 +127,7 @@ class LifetimeWidget extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.all(4.0),
                   child: Text(
-                    this.lifetime != null ? lifetime.minutes.toString() : '-',
+                    formatNumber(lifetime.minutes),
                   ),
                 ),
               )
@@ -133,7 +148,7 @@ class LifetimeWidget extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.all(4.0),
                   child: Text(
-                    this.lifetime != null ? lifetime.seconds.toString() : '-',
+                    formatNumber(lifetime.seconds),
                   ),
                 ),
               )
