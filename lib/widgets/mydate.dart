@@ -85,19 +85,23 @@ class MyDateWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      "Birthday: ${this.formatter.format(myDate.birthday)}",
-                      style: Theme.of(context).textTheme.bodyText1.copyWith(
-                            color: Colors.white70,
-                            fontSize: 18,
-                          ),
+                    FittedBox(
+                      child: Text(
+                        "Birthday: ${this.formatter.format(myDate.birthday)}",
+                        style: Theme.of(context).textTheme.bodyText1.copyWith(
+                              color: Colors.white70,
+                              fontSize: 18,
+                            ),
+                      ),
                     ),
-                    Text(
-                      "Next Birthday: ${this.myDate.age.daysToNextBD} days",
-                      style: Theme.of(context).textTheme.bodyText1.copyWith(
-                            color: Colors.white70,
-                            fontSize: 18,
-                          ),
+                    FittedBox(
+                      child: Text(
+                        "Next Birthday: ${this.myDate.age.daysToNextBD} days",
+                        style: Theme.of(context).textTheme.bodyText1.copyWith(
+                              color: Colors.white70,
+                              fontSize: 18,
+                            ),
+                      ),
                     ),
                   ],
                 ),
