@@ -16,14 +16,17 @@ class MyCard extends StatelessWidget {
             children: [
               Expanded(
                 child: Container(
-                  padding: EdgeInsets.all(6),
+                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 6),
                   decoration: AppTheme.cardTitleDecoration,
                   child: Center(
-                    child: Text(
-                      this.title,
-                      style: Theme.of(context).textTheme.headline4.copyWith(
-                            color: Colors.white,
-                          ),
+                    child: FittedBox(
+                      fit: BoxFit.contain,
+                      child: Text(
+                        this.title,
+                        style: Theme.of(context).textTheme.headline4.copyWith(
+                              color: Colors.white,
+                            ),
+                      ),
                     ),
                   ),
                 ),
