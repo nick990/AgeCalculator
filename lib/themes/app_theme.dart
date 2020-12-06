@@ -31,6 +31,9 @@ class AppTheme {
     end: Alignment.bottomRight,
   );
 
+  static final floatingButtonColorTween =
+      ColorTween(begin: color4, end: color3);
+
   static final gradient3 = LinearGradient(
     colors: <Color>[
       color4,
