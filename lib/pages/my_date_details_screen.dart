@@ -4,7 +4,7 @@ import 'package:age_calculator/providers/settings_provider.dart';
 import 'package:age_calculator/themes/app_theme.dart';
 import 'package:age_calculator/widgets/age.dart';
 import 'package:age_calculator/widgets/lifetime.dart';
-import 'package:age_calculator/widgets/mycard.dart';
+import 'package:age_calculator/widgets/mycard_animated.dart';
 import 'package:age_calculator/widgets/mydate_edit.dart';
 import 'package:age_calculator/widgets/next_birthday.dart';
 import 'package:age_calculator/widgets/upcoming_birthdays.dart';
@@ -33,7 +33,7 @@ class MyDateDetailsScreen extends StatelessWidget {
     ageSection
         .add(UpcomingBirthdaysWidget(age: myDate.age, formatter: formatter));
 
-    var birthdaySection = MyCard(
+    var birthdaySection = MyCardAnimated(
       title: 'Birthday',
       body: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,

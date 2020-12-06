@@ -1,6 +1,7 @@
 import 'package:age_calculator/models/Age.dart';
-import 'package:age_calculator/widgets/mycard.dart';
 import 'package:flutter/material.dart';
+
+import 'mycard_animated.dart';
 
 class AgeWidget extends StatelessWidget {
   final AgeModel age;
@@ -8,7 +9,7 @@ class AgeWidget extends StatelessWidget {
   const AgeWidget({Key key, this.age}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return MyCard(
+    return MyCardAnimated(
       title: 'Age',
       body: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,

@@ -1,8 +1,6 @@
 import 'package:age_calculator/models/Lifetime.dart';
+import 'package:age_calculator/widgets/mycard_animated.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-
-import 'mycard.dart';
 
 class LifetimeWidget extends StatelessWidget {
   final LifeTime lifetime;
@@ -24,7 +22,7 @@ class LifetimeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MyCard(
+    return MyCardAnimated(
       title: 'Lifetime',
       body: Table(
         children: [

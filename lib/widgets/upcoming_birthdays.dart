@@ -1,7 +1,8 @@
 import 'package:age_calculator/models/Age.dart';
-import 'package:age_calculator/widgets/mycard.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
+import 'mycard_animated.dart';
 
 class UpcomingBirthdaysWidget extends StatelessWidget {
   final AgeModel age;
@@ -53,7 +54,7 @@ class UpcomingBirthdaysWidget extends StatelessWidget {
       }
     }
 
-    return MyCard(
+    return MyCardAnimated(
       title: 'Upcoming Birthdays',
       body: Table(
         children: _nextBirthdaysList,
