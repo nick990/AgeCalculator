@@ -9,10 +9,10 @@ class MyCardAnimated extends StatefulWidget {
   MyCardAnimated({this.title, this.body, this.iconData});
 
   @override
-  _MyCardState createState() => _MyCardState();
+  _MyCardAnimatedState createState() => _MyCardAnimatedState();
 }
 
-class _MyCardState extends State<MyCardAnimated>
+class _MyCardAnimatedState extends State<MyCardAnimated>
     with SingleTickerProviderStateMixin {
   Animation<Color> animationColor;
   AnimationController controller;
