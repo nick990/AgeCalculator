@@ -3,7 +3,7 @@ import 'package:age_calculator/models/Lifetime.dart';
 import 'package:age_calculator/providers/settings_provider.dart';
 import 'package:age_calculator/themes/app_theme.dart';
 import 'package:age_calculator/widgets/age.dart';
-import 'package:age_calculator/widgets/gradient_floating_action_button.dart';
+import 'package:age_calculator/widgets/gradient_floating_action_button_animated.dart';
 import 'package:age_calculator/widgets/gradient_icon.dart';
 import 'package:age_calculator/widgets/lifetime.dart';
 import 'package:age_calculator/widgets/mydate_creation.dart';
@@ -139,12 +139,12 @@ class _CalculatorPartialScreenState extends State<CalculatorPartialScreen> {
 
     final Widget floatingActionButton = (this.birthdayDate == null)
         ? null
-        : GradientFloatingActionButton(
+        : GradientFloatingActionButtonAnimated(
             elevation: AppTheme.floatingButtonElevation,
-            gradient: AppTheme.gradient2,
             iconData: Icons.save,
             iconSize: AppTheme.floatinButtonIconSize,
             size: AppTheme.floatingButtonSize,
+            colorTween: AppTheme.floatingButtonColorTween,
             onPressed: () {
               showModalBottomSheet(
                   context: context,

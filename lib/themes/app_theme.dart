@@ -31,6 +31,9 @@ class AppTheme {
     end: Alignment.bottomRight,
   );
 
+  static final floatingButtonColorTween =
+      ColorTween(begin: color4, end: color3);
+
   static final gradient3 = LinearGradient(
     colors: <Color>[
       color4,
@@ -74,7 +77,7 @@ class AppTheme {
     colorScheme: ColorScheme.light(primary: color1),
     cardTheme: CardTheme(
       margin: EdgeInsets.all(15),
-      elevation: 10,
+      //     elevation: 10,
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: titleColor,

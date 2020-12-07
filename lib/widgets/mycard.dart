@@ -1,5 +1,6 @@
 import 'package:age_calculator/themes/app_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/animation.dart';
 
 class MyCard extends StatelessWidget {
   final String title;
@@ -10,6 +11,7 @@ class MyCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      elevation: 10.0,
       child: Column(
         children: [
           Row(
@@ -17,7 +19,9 @@ class MyCard extends StatelessWidget {
               Expanded(
                 child: Container(
                   padding: EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-                  decoration: AppTheme.cardTitleDecoration,
+                  decoration: BoxDecoration(
+                    gradient: AppTheme.gradient1,
+                  ),
                   child: Center(
                     child: FittedBox(
                       fit: BoxFit.contain,
